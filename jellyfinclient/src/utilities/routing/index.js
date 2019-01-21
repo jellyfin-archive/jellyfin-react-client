@@ -1,3 +1,7 @@
-import * as Routing from 'react-router-dom';
-export default Routing;
-export const Router = Routing.BrowserRouter;
+export {
+    BrowserRouter as Router,
+    Link,
+    Switch,
+    Route,
+    Redirect
+} from 'react-router-dom';
