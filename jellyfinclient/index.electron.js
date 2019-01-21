@@ -6,14 +6,20 @@
 
  const {app, BrowserWindow, protocol} = require('electron');
 
+ const url = require('url');
 
  const PROTOCOL = 'file';
 
  const options =
  {
-   icon: `${PROTOCOL}:///favicon-288.png`,
+   icon: url.format({
+    pathname: 'favicon-228.png',
+    protocol: PROTOCOL + ':',
+    slashes: true
+  }),
    webPreferences: {
-     nodeIntegration: false
+       nodeIntegration: false,
+       webSecurity: false,
    }
  };
 
@@ -34,9 +40,12 @@ function createWindow() {
     mainWindow = new BrowserWindow(options);
 
     // and load the index.html of the app.
-    mainWindow.loadURL(`${PROTOCOL}:///index.html`);
+    mainWindow.loadURL(url.format({
+        pathname: 'index.html',
+        protocol: PROTOCOL + ':',
+        slashes: true
+      }));
 
-    // Open the DevTools.
     mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
