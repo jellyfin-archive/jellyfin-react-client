@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 
-import  SampleAction from './../actions/SampleAction';
 import TopLevelComponent from '../components/TopLevelComponent'
 
 
