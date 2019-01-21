@@ -14,9 +14,6 @@ export default class TopLevelComponent extends Component {
         super(props, context);
         this.state = {
             message: 'Welcome to top level component of this app.',
-            dispatchMessage: 'Dispatch an action to:',
-            passActionDispatchValue: 1,
-            failActionDispatchValue: 0,
         };
     }
 
@@ -27,25 +24,6 @@ export default class TopLevelComponent extends Component {
                     {this.state.message}
                 </Text>
 
-                <View style={styles.row}>
-                    <Text style={styles.text}>
-                        {this.state.dispatchMessage}
-                    </Text>
-                    <View style={styles.button}>
-
-                        <Button
-                            title={"Pass"}
-                            onPress={this.props.passDispatchedAction}
-                        />
-                    </View>
-                    <View style={styles.button}>
-
-                        <Button
-                            title={"Fail"}
-                            onPress={this.props.failDispatchedAction}
-                        />
-                    </View>
-                </View>
                 <Text style={styles.biggerText}>
                     {this.props.message}
                 </Text>

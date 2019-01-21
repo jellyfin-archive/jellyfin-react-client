@@ -3,7 +3,8 @@ import {
     Button,
     StyleSheet,
     Text,
-    View
+    View,
+    TextInput
 } from 'react-native';
 import {Link} from '../utilities/routing/index';
 
@@ -14,9 +15,10 @@ export default class LoginComponent extends Component {
         super(props, context);
         this.state = {
             message: 'Welcome to login component of this app.',
-            dispatchMessage: 'Dispatch an action to:',
-            passActionDispatchValue: 1,
-            failActionDispatchValue: 0,
+            usernameMessage: 'Username: ',
+            passwordMessage: 'Password: ',
+            serverAddress: 'Server address: ',
+            loginButtonMessage: 'Login',
         };
     }
 
@@ -29,23 +31,40 @@ export default class LoginComponent extends Component {
 
                 <View style={styles.row}>
                     <Text style={styles.text}>
-                        {this.state.dispatchMessage}
+                        {this.state.usernameMessage}
                     </Text>
-                    <View style={styles.button}>
-
-                        <Button
-                            title={"Pass"}
-                            onPress={this.props.passDispatchedAction}
-                        />
-                    </View>
-                    <View style={styles.button}>
-
-                        <Button
-                            title={"Fail"}
-                            onPress={this.props.failDispatchedAction}
-                        />
+                    <View style={styles.text}>
+                        <TextInput style={{height: 25, borderColor: 'gray', borderWidth: 1}}
+                            onChangeText={(username) => this.setState({username})}
+                            value={this.state.text}
+                            />
                     </View>
                 </View>
+
+                <View style={styles.row}>
+                    <Text style={styles.text}>
+                        {this.state.passwordMessage}
+                    </Text>
+                    <View style={styles.text}>
+                        <TextInput style={{height: 25, borderColor: 'gray', borderWidth: 1}}
+                            onChangeText={(password) => this.setState({password})}
+                            value={this.state.text}
+                            />
+                    </View>
+                </View>
+
+                <View style={styles.row}>
+                    <Text style={styles.text}>
+                        {this.state.serverAddress}
+                    </Text>
+                    <View style={styles.text}>
+                        <TextInput style={{height: 25, borderColor: 'gray', borderWidth: 1}}
+                            onChangeText={(serverAddress) => this.setState({serverAddress})}
+                            value={this.state.text}
+                            />
+                    </View>
+                </View>
+
                 <Text style={styles.biggerText}>
                     {this.props.message}
                 </Text>
