@@ -8,7 +8,7 @@ function replace(name)
 {
   const {dest, packageName, src} = this
 
-  const path = `node_modules/${packageName}/config/${name}.js`
+  const path = `node_modules/${packageName}/${name}.js`
   const data = readFileSync(path, 'utf8')
 
   writeFileSync(path, data.replace(src, dest))
