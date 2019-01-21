@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{b6c6f1ae-053f-4949-a0a1-131b515badd0}</ProjectGuid>
+    <ProjectGuid>{B6C6F1AE-053F-4949-A0A1-131B515BADD0}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>jellyfinclient</RootNamespace>
@@ -20,6 +20,7 @@
     <PackageCertificateThumbprint>B1506DE4B0056C3C3485FB926776BD8180081950</PackageCertificateThumbprint>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <DependencyConfiguration>Debug</DependencyConfiguration>
+    <AssemblyVersion>2019.1.21.1</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'DebugBundle'">
     <DependencyConfiguration>Debug</DependencyConfiguration>
