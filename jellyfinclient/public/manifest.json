@@ -1,6 +1,6 @@
 {
   "short_name": "jellyfinclient",
-  "name": "jellyfinclient",
+  "name": "Jellyfin Client",
   "icons": [
     {
       "src": "favicon.ico",

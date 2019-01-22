@@ -17,9 +17,11 @@
     protocol: PROTOCOL + ':',
     slashes: true
   }),
-   webPreferences: {
-       nodeIntegration: false,
-       webSecurity: false,
+   webPreferences: {	   
+	   nodeIntegration: true,
+	   webSecurity: true,
+	   webviewTag: false,
+	   navigateOnDragDrop: false
    }
  };
 
