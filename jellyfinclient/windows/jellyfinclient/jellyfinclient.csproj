@@ -20,7 +20,6 @@
     <PackageCertificateThumbprint>B1506DE4B0056C3C3485FB926776BD8180081950</PackageCertificateThumbprint>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <DependencyConfiguration>Debug</DependencyConfiguration>
-    <AssemblyVersion>2019.1.21.1</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'DebugBundle'">
     <DependencyConfiguration>Debug</DependencyConfiguration>

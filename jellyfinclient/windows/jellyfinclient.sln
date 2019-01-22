@@ -20,7 +20,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Facebook.Yoga.Shared", "..\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yoga.uwp", "..\node_modules\react-native-windows\Yoga\csharp\Yoga\Yoga.Universal.vcxproj", "{2EACF721-73B5-46AE-9775-4A8674D05A9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNSensitiveInfo", "../\node_modules\react-native-sensitive-info\windows\RNSensitiveInfo\RNSensitiveInfo\RNSensitiveInfo.csproj", "{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNSensitiveInfo", "..\node_modules\react-native-sensitive-info\windows\RNSensitiveInfo\RNSensitiveInfo\RNSensitiveInfo.csproj", "{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -80,30 +80,6 @@ Global
 		{B6C6F1AE-053F-4949-A0A1-131B515BADD0}.ReleaseBundle|x86.ActiveCfg = ReleaseBundle|x86
 		{B6C6F1AE-053F-4949-A0A1-131B515BADD0}.ReleaseBundle|x86.Build.0 = ReleaseBundle|x86
 		{B6C6F1AE-053F-4949-A0A1-131B515BADD0}.ReleaseBundle|x86.Deploy.0 = ReleaseBundle|x86
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|ARM.ActiveCfg = Debug|ARM
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|ARM.Build.0 = Debug|ARM
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|x64.ActiveCfg = Debug|x64
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|x64.Build.0 = Debug|x64
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|x86.ActiveCfg = Debug|x86
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|x86.Build.0 = Debug|x86
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|ARM.ActiveCfg = Debug|ARM
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|ARM.Build.0 = Debug|ARM
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|x64.ActiveCfg = Debug|x64
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|x64.Build.0 = Debug|x64
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|x86.ActiveCfg = Debug|x86
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|x86.Build.0 = Debug|x86
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|ARM.ActiveCfg = Release|ARM
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|ARM.Build.0 = Release|ARM
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|x64.ActiveCfg = Release|x64
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|x64.Build.0 = Release|x64
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|x86.ActiveCfg = Release|x86
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|x86.Build.0 = Release|x86
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|ARM.ActiveCfg = Release|ARM
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|ARM.Build.0 = Release|ARM
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|x64.ActiveCfg = Release|x64
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|x64.Build.0 = Release|x64
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|x86.ActiveCfg = Release|x86
-        {9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|x86.Build.0 = Release|x86
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|ARM.ActiveCfg = Debug|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|ARM.Build.0 = Debug|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|x64.ActiveCfg = Debug|x64
@@ -200,22 +176,35 @@ Global
 		{2EACF721-73B5-46AE-9775-4A8674D05A9C}.ReleaseBundle|x64.Build.0 = Release|x64
 		{2EACF721-73B5-46AE-9775-4A8674D05A9C}.ReleaseBundle|x86.ActiveCfg = Release|Win32
 		{2EACF721-73B5-46AE-9775-4A8674D05A9C}.ReleaseBundle|x86.Build.0 = Release|Win32
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|ARM.Build.0 = Debug|ARM
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|x64.ActiveCfg = Debug|x64
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|x64.Build.0 = Debug|x64
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|x86.ActiveCfg = Debug|x86
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Debug|x86.Build.0 = Debug|x86
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|ARM.ActiveCfg = Debug|ARM
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|ARM.Build.0 = Debug|ARM
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|x64.ActiveCfg = Debug|x64
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|x64.Build.0 = Debug|x64
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|x86.ActiveCfg = Debug|x86
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.DebugBundle|x86.Build.0 = Debug|x86
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|ARM.ActiveCfg = Release|ARM
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|ARM.Build.0 = Release|ARM
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|x64.ActiveCfg = Release|x64
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|x64.Build.0 = Release|x64
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|x86.ActiveCfg = Release|x86
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.Release|x86.Build.0 = Release|x86
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|ARM.ActiveCfg = Release|ARM
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|ARM.Build.0 = Release|ARM
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|x64.ActiveCfg = Release|x64
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|x64.Build.0 = Release|x64
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|x86.ActiveCfg = Release|x86
+		{9CE4E68C-5441-49FD-830C-64DBAE2AA63F}.ReleaseBundle|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8901BBCC-C09C-4C81-8E8B-C701FFE8F7FF}
-	EndGlobalSection
-	GlobalSection(AutomaticVersions) = postSolution
-		UpdateAssemblyVersion = True
-		UpdateAssemblyFileVersion = True
-		UpdateAssemblyInfoVersion = True
-		AssemblyVersionSettings = None.None.None.None
-		AssemblyFileVersionSettings = None.None.None.None
-		AssemblyInfoVersionSettings = None.None.None.None
-		UpdatePackageVersion = False
-		AssemblyInfoVersionType = SettingsVersion
-		InheritWinAppVersionFrom = None
 	EndGlobalSection
 EndGlobal
