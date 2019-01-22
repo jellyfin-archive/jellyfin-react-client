@@ -6,9 +6,6 @@ let storage;
 if (isElectron()){
     const createElectronStore = require("electron-store-webpack-wrapper").default;
     const createElectronStorage = require("redux-persist-electron-storage");
-    console.log("Electron!")
-    console.log(createElectronStore)
-    console.log(createElectronStorage)
     const electronStore = createElectronStore({
         // your electron-store options here
     })
@@ -16,8 +13,6 @@ if (isElectron()){
         electronStore
     })
 } else {
-    console.log("Web!")
     storage = require('redux-persist/lib/storage').default;
 }
-console.log(storage)
 export default storage;
