@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Button,
+import {    
     StyleSheet,
     Text,
     View
@@ -29,7 +28,7 @@ export default class TopLevelComponent extends Component {
                 </Text>
                 <View style={styles.button}>
                     <Link to={'/login'}>
-                        <Button title="To get started, go to the login page."/>
+                        <Text>To get started, go to the login page.</Text>
                     </Link>
                 </View>
             </View>

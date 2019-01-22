@@ -31,6 +31,8 @@
     "windows:release": "react-native bundle --platform=windows --entry-file index.js --assets-dest windows/jellyfinclient/ReactAssets --bundle-output windows/jellyfinclient/ReactAssets/index.windows.bundle --dev false"
   },
   "dependencies": {
+    "formik": "^1.4.2",
+    "prop-types": "^15.6.2",
     "react": "16.6.3",
     "react-art": "16.7.0",
     "react-dom": "16.7.0",
