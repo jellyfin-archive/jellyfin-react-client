@@ -3,8 +3,9 @@
  */
 import * as types from "../actions/ActionTypes";
 
+const initialState = {message:'', somethingHappeningStatus:''};
 
-export default function logReducer(state = {}, action) {
+export default function sampleReducer(state = initialState, action) {
     switch (action.type) {
 
         case types.SOMETHING_HAPPENED_SUCCESSFULLY:

@@ -18,12 +18,12 @@ class LoginScreen extends Component {
     }
 
     render() {
-        return (
+        return (            
             <LoginComponent
                 loginAction={this.loginAction}
-                username={this.props.loginReducer.username}
-                password={this.props.loginReducer.password}
-                serverAddress={this.props.loginReducer.serverAddress}
+                username={this.props.auth.username}
+                password={this.props.auth.password}
+                serverAddress={this.props.auth.serverAddress}
             />
         );
     }
@@ -32,9 +32,9 @@ class LoginScreen extends Component {
         this.props.dispatch(LoginAction(state.serverAddress,state.username,state.password))
     }
 }
-
-function mapStateToProps({loginReducer}) {
-    return ({loginReducer})
+// auth is the reducer key defined in ../utilities/storage/store.js
+function mapStateToProps({auth}) {
+    return ({auth})
 }
 
 

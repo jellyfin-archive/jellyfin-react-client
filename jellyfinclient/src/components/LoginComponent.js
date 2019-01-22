@@ -5,11 +5,10 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput
+    TextInput,
+    StatusBar    
 } from 'react-native';
 import { Link } from '../utilities/routing/index';
-
-// This is a dumb component that is common for native and web
 
 export default class LoginComponent extends Component {
     constructor(props, context) {
@@ -27,8 +26,9 @@ export default class LoginComponent extends Component {
     }
 
     render() {
-        return (
+        return (            
             <View style={styles.container}>
+                <StatusBar hidden/>
                 <Text style={styles.biggerText}>
                     {this.state.message}
                 </Text>

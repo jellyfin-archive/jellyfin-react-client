@@ -3,10 +3,10 @@
  */
 import * as types from "../actions/ActionTypes";
 
+const initialState = {serverAddress:'http://localhost:8096/'}
 
-export default function logReducer(state = {}, action) {
+export default function authReducer(state = initialState, action) {
     switch (action.type) {
-
         case types.LOGIN_SUCCESSFUL:
             return {
                 ...state,...action.data, loginStatus:true

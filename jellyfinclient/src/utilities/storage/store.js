@@ -1,12 +1,35 @@
-import {createStore, applyMiddleware, compose} from "redux";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
+import { persistStore, persistReducer } from 'redux-persist'
 import thunk from "redux-thunk";
-import rootReducer from "../../reducers/rootReducer";
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
+import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
+import AuthReducer from "../../reducers/authReducer";
+import SampleReducer from "../../reducers/sampleReducer";
+import sensitiveStorage from './sensitiveStorage'
 
-const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, persistedState, composeEnhancers(applyMiddleware(thunk)));
+const rootPersistConfig = {
+    key: 'root',
+    storage: storage,
+    blacklist: ['auth']
+}
 
-store.subscribe(()=>{
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+
+const authPersistConfig = {
+    key: 'auth',
+    storage: sensitiveStorage,
+    stateReconciler: hardSet,
+}
+
+const rootReducer = combineReducers({
+    auth: persistReducer(authPersistConfig, AuthReducer),
+    sample: SampleReducer,
 })
-export default store;
+
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export default () => {
+    let store = createStore(persistedReducer, {}, composeEnhancers(applyMiddleware(thunk)))
+    let persistor = persistStore(store)
+    return { store, persistor }
+}
