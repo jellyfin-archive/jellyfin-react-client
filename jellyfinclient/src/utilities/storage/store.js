@@ -14,6 +14,8 @@ const rootPersistConfig = {
 }
 
 
+//TODO add bulk storage (for sync and download)
+
 const authPersistConfig = {
     key: 'auth',
     storage: sensitiveStorage,
