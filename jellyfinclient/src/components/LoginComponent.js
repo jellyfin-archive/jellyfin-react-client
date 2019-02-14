@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Formik } from 'formik';
 import {
     Button,
-    StyleSheet,
     Text,
     View,
     TextInput,
     StatusBar    
 } from 'react-native';
+import styles from './Style'
 import { Link } from '../utilities/routing/index';
 
 export default class LoginComponent extends Component {
@@ -40,7 +40,7 @@ export default class LoginComponent extends Component {
                         handleSubmit,
                     }) => (
                             <View>
-                                <View style={styles.row}>
+                                <View style={styles.loginInput}>
                                     <Text style={styles.text}>
                                         {this.state.usernameMessage}
                                     </Text>
@@ -52,7 +52,7 @@ export default class LoginComponent extends Component {
                                     </View>
                                 </View>
 
-                                <View style={styles.row}>
+                                <View style={styles.loginInput}>
                                     <Text style={styles.text}>
                                         {this.state.passwordMessage}
                                     </Text>
@@ -64,7 +64,7 @@ export default class LoginComponent extends Component {
                                     </View>
                                 </View>
 
-                                <View style={styles.row}>
+                                <View style={styles.loginInput}>
                                     <Text style={styles.text}>
                                         {this.state.serverAddressMessage}
                                     </Text>
@@ -76,7 +76,7 @@ export default class LoginComponent extends Component {
                                     </View>
                                 </View>
 
-                                <View style={styles.row}>
+                                <View style={styles.loginInput}>
                                     <Button onPress={handleSubmit} title={this.state.loginButtonMessage} />
                                 </View>
                             </View>
@@ -98,22 +98,3 @@ export default class LoginComponent extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    row: {
-        flexDirection: 'row',
-        margin: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    biggerText: {
-        fontSize: 17,
-        alignSelf: 'center'
-    },
-    button: {
-        margin: 5
-    }
-});

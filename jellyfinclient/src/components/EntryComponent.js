@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {    
-    StyleSheet,
     Text,
     View
 } from 'react-native';
+import styles from './Style'
 import {Link} from '../utilities/routing/index';
 
 // This is a dumb component that is common for native and web
@@ -35,25 +35,3 @@ export default class EntryComponent extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    row: {
-        flexDirection: 'row',
-        margin: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    link: {
-        alignSelf: 'center'
-    },
-    biggerText: {
-        fontSize: 17,
-        alignSelf: 'center'
-    },
-    button: {
-        margin: 5
-    }
-});
