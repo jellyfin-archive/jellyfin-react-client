@@ -29,7 +29,7 @@ export default class LoginComponent extends Component {
         return (            
             <View style={styles.container}>
                 <StatusBar hidden/>
-                <Text style={styles.biggerText}>
+                <Text style={[styles.text, styles.biggerText]}>
                     {this.state.message}
                 </Text>
                 <Formik
@@ -44,8 +44,8 @@ export default class LoginComponent extends Component {
                                     <Text style={styles.text}>
                                         {this.state.usernameMessage}
                                     </Text>
-                                    <View style={styles.text}>
-                                        <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }}
+                                    <View>
+                                        <TextInput style={[styles.text, styles.inputBox]}
                                             onChangeText={(username) => this.setState({ username })}
                                             value={this.state.username}
                                         />
@@ -56,8 +56,8 @@ export default class LoginComponent extends Component {
                                     <Text style={styles.text}>
                                         {this.state.passwordMessage}
                                     </Text>
-                                    <View style={styles.text}>
-                                        <TextInput secureTextEntry={true} style={{ height: 25, borderColor: 'gray', borderWidth: 1 }}
+                                    <View>
+                                        <TextInput secureTextEntry={true} style={[styles.text, styles.inputBox]}
                                             onChangeText={(password) => this.setState({ password })}
                                             value={this.state.password}
                                         />
@@ -68,8 +68,8 @@ export default class LoginComponent extends Component {
                                     <Text style={styles.text}>
                                         {this.state.serverAddressMessage}
                                     </Text>
-                                    <View style={styles.text}>
-                                        <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }}
+                                    <View>
+                                        <TextInput style={[styles.text, styles.inputBox]}
                                             onChangeText={(serverAddress) => this.setState({ serverAddress })}
                                             value={this.state.serverAddress}
                                         />
@@ -82,7 +82,7 @@ export default class LoginComponent extends Component {
                             </View>
                         )}
                 />
-                <Text style={styles.biggerText}>
+                <Text style={[styles.text, styles.biggerText]}>
                 Current data{"\n"}
                 {this.state.usernameMessage} {this.props.username}{"\n"}
                 {this.state.passwordMessage} {this.props.password}{"\n"}
