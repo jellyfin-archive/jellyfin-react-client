@@ -6,6 +6,7 @@ import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 import AuthReducer from "../../reducers/authReducer";
 import SampleReducer from "../../reducers/sampleReducer";
 import sensitiveStorage from './sensitiveStorage'
+import ConnectReducer from "../../reducers/connectReducer";
 
 const rootPersistConfig = {
     key: 'root',
@@ -22,8 +23,15 @@ const authPersistConfig = {
     stateReconciler: hardSet,
 }
 
+const connectPersistConfig = {
+    key: 'connect',
+    storage: sensitiveStorage,
+    stateReconciler: hardSet,
+}
+
 const rootReducer = combineReducers({
     auth: persistReducer(authPersistConfig, AuthReducer),
+    connect: persistReducer(connectPersistConfig, ConnectReducer),
     sample: SampleReducer,
 })
 
