@@ -11,12 +11,12 @@ export default function connectToServer(serverAddress, port){
                 console.log("Connected");
                 console.log(result);
                 this.props.navigation.navigate('/login');
-                return (dispatch(loginSuccessfully()));
+                return (dispatch(connectSuccessful()));
                 })
         }
         catch (err) {
             console.log("Unable to connect.");
-            return dispatch(loginFailed(err));
+            return dispatch(connectFailed(err));
         }
     };
 }
@@ -42,16 +42,16 @@ function normalizeAddress(serverAddress) {
     return serverAddress;
 }
 
-function loginSuccessfully(payload) {
+function connectSuccessful(payload) {
     return {
-        type: types.LOGIN_SUCCESSFUL,
+        type: types.CONNECT_SUCCESSFUL,
         data: payload
     };
 }
 
-function loginFailed(payload) {
+function connectFailed(payload) {
     return {
-        type: types.LOGIN_FAILED,
+        type: types.CONNECT_FAILED,
         data: payload
     };
 }
