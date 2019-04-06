@@ -1,4 +1,4 @@
-# jellyfin-webng
+# jellyfin-react-client
 
 The next generation client application for Jellyfin
 
