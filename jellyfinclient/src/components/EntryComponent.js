@@ -20,7 +20,6 @@ export default class EntryComponent extends Component {
             port: '',
             connectButtonMessage: 'Connect'
         };
-        document.title = 'Jellyfin';
     }
 
     render() {
