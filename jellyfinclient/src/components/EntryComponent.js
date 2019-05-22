@@ -1,36 +1,75 @@
 import React, { Component } from 'react';
-import {    
+import {
     Text,
-    View
+    View,
+    TextInput,
+    Button,
+    Image,
 } from 'react-native';
 import styles from './Style'
-import {Link} from '../utilities/routing/index';
+import { Formik } from 'formik';
 
-// This is a dumb component that is common for native and web
 
 export default class EntryComponent extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            message: 'Welcome to top level component of this app.',
+            serverMessage: 'Server: ',
+            server: '',
+            portMessage: 'Port: ',
+            port: '',
+            connectButtonMessage: 'Connect'
         };
+        document.title = 'Jellyfin';
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.biggerText}>
-                    {this.state.message}
-                </Text>
-
-                <Text style={styles.biggerText}>
-                    {this.props.message}
-                </Text>
-                <View style={styles.button}>
-                    <Link to={'/login'}>
-                        <Text>To get started, go to the login page.</Text>
-                    </Link>
-                </View>
+                <Image
+                    style={[styles.image]}
+                    source={require('./splash.png')}
+                    resizeMethod="resize"
+                />
+                <Formik
+                    onSubmit={() => {
+                        this.props.connectAction(this.state);
+                    }}
+                    render={({
+                        handleSubmit,
+                    }) => (
+                            <View style={styles.container}>
+                                <View style={styles.loginInput}>
+                                    <Text style={styles.text}>
+                                        {this.state.serverMessage}
+                                    </Text>
+                                    <View>
+                                        <TextInput style={[styles.text, styles.inputBox]}
+                                            onChangeText={(server) => this.setState({ server })}
+                                            value={this.state.server}
+                                        />
+                                    </View>
+                                </View>
+                                <View style={styles.loginInput}>
+                                    <Text style={styles.text}>
+                                        {this.state.portMessage}
+                                    </Text>
+                                    <View>
+                                        <TextInput style={[styles.text, styles.inputBox]}
+                                            onChangeText={(port) => this.setState({ port })}
+                                            value={this.state.port}
+                                        />
+                                    </View>
+                                </View>
+                                <View style={styles.loginInput}>
+                                    <Button style={[styles.button]}
+                                        title={this.state.connectButtonMessage}
+                                        onPress={handleSubmit}
+                                    />
+                                </View>
+                            </View>
+                        )}
+                />
             </View>
         );
     }
