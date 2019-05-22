@@ -42,8 +42,8 @@ export default StyleSheet.create({
     },
     image: {
         aspectRatio: (4800 / 1600),
-        width: '50%',
-        height: '50%',
+        width: '45%',
+        height: '15%',
         resizeMode: 'contain',
         alignSelf: 'center',
     }
