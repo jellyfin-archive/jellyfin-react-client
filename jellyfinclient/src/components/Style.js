@@ -11,6 +11,7 @@ export default StyleSheet.create({
         width: win.width,
         height: win.height,
         backgroundColor: '#101010',
+        justifyContent: 'center'
     },
     loginInput: {
         flexDirection: 'row',
@@ -18,12 +19,13 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    link: {
-        alignSelf: 'center'
-    },
     inputBox: {
         width: 250,
         height: 25,
+        paddingLeft: 3,
+        paddingRight: 3,
+        paddingTop: 0,
+        paddingBottom: 0,
         backgroundColor: '#292929',
         borderColor: '#00a4dc',
         borderStyle: 'solid',
@@ -38,13 +40,12 @@ export default StyleSheet.create({
     biggerText: {
         color: '#ffffff',
         fontSize: 17,
-        alignSelf: 'center'
     },
     image: {
         aspectRatio: (4800 / 1600),
         width: '45%',
         height: '15%',
         resizeMode: 'contain',
-        alignSelf: 'center',
+        alignSelf: 'center'
     }
 });

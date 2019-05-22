@@ -14,9 +14,7 @@ export default class EntryComponent extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            serverMessage: 'Server: ',
             server: '',
-            portMessage: 'Port: ',
             port: '',
             connectButtonMessage: 'Connect'
         };
@@ -37,26 +35,24 @@ export default class EntryComponent extends Component {
                     render={({
                         handleSubmit,
                     }) => (
-                            <View style={styles.container}>
+                            <View>
                                 <View style={styles.loginInput}>
-                                    <Text style={styles.text}>
-                                        {this.state.serverMessage}
-                                    </Text>
                                     <View>
                                         <TextInput style={[styles.text, styles.inputBox]}
                                             onChangeText={(server) => this.setState({ server })}
                                             value={this.state.server}
+                                            placeholder="Server (eg http://localhost)"
+                                            placeholderTextColor="grey"
                                         />
                                     </View>
                                 </View>
                                 <View style={styles.loginInput}>
-                                    <Text style={styles.text}>
-                                        {this.state.portMessage}
-                                    </Text>
                                     <View>
                                         <TextInput style={[styles.text, styles.inputBox]}
                                             onChangeText={(port) => this.setState({ port })}
                                             value={this.state.port}
+                                            placeholder="Port (eg 8096)"
+                                            placeholderTextColor="grey"
                                         />
                                     </View>
                                 </View>
