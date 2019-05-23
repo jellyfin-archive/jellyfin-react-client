@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    Text,
     View,
     TextInput,
     Button,
@@ -25,7 +24,7 @@ export default class EntryComponent extends Component {
             <View style={styles.container}>
                 <Image
                     style={[styles.image]}
-                    source={require('./splash.png')}
+                    source={require('./splash.jpg')}
                     resizeMethod="resize"
                 />
                 <Formik
