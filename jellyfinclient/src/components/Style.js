@@ -22,6 +22,7 @@ export default StyleSheet.create({
         alignSelf: 'center'
     },
     inputBox: {
+        width: 250,
         height: 25,
         backgroundColor: '#292929',
         borderColor: '#00a4dc',
@@ -30,6 +31,7 @@ export default StyleSheet.create({
         borderWidth: '.07em'
     },
     text: {
+        width: 100,
         color: '#ffffff',
         fontFamily: 'Helvetica'
     },
@@ -38,7 +40,11 @@ export default StyleSheet.create({
         fontSize: 17,
         alignSelf: 'center'
     },
-    button: {
-        margin: 5
+    image: {
+        aspectRatio: (4800 / 1600),
+        width: '50%',
+        height: '50%',
+        resizeMode: 'contain',
+        alignSelf: 'center',
     }
 });
