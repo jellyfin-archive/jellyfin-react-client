@@ -27,8 +27,8 @@ export default StyleSheet.create({
         backgroundColor: '#292929',
         borderColor: '#00a4dc',
         borderStyle: 'solid',
-        borderRadius: '.15em',
-        borderWidth: '.07em'
+        borderRadius: .15,
+        borderWidth: .07
     },
     text: {
         width: 100,
