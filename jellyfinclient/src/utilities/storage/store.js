@@ -4,7 +4,6 @@ import thunk from "redux-thunk";
 import normalStorage from './normalStorage'
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 import AuthReducer from "../../reducers/authReducer";
-import SampleReducer from "../../reducers/sampleReducer";
 import sensitiveStorage from './sensitiveStorage'
 import ConnectReducer from "../../reducers/connectReducer";
 
@@ -18,21 +17,20 @@ const rootPersistConfig = {
 //TODO add bulk storage (for sync and download)
 
 const authPersistConfig = {
-    key: 'auth',
+    key: 'authCredentials',
     storage: sensitiveStorage,
     stateReconciler: hardSet,
 }
 
 const connectPersistConfig = {
-    key: 'connect',
+    key: 'connectionStatus',
     storage: sensitiveStorage,
     stateReconciler: hardSet,
 }
 
 const rootReducer = combineReducers({
     auth: persistReducer(authPersistConfig, AuthReducer),
-    connect: persistReducer(connectPersistConfig, ConnectReducer),
-    sample: SampleReducer,
+    connect: persistReducer(connectPersistConfig, ConnectReducer)
 })
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
