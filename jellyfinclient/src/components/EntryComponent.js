@@ -7,9 +7,10 @@ import {
 } from 'react-native';
 import styles from './Style'
 import { Formik } from 'formik';
+import { connect } from "react-redux";
 
 
-export default class EntryComponent extends Component {
+class EntryComponent extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -18,6 +19,11 @@ export default class EntryComponent extends Component {
             connectButtonMessage: 'Connect'
         };
     }
+
+    componentDidMount() {
+        this.setState({ server: this.props.connect.serverAddress, port: this.props.connect.serverPort });
+    }
+
 
     render() {
         return (
@@ -68,3 +74,9 @@ export default class EntryComponent extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return { connect: state.connect };
+}
+
+export default connect(mapStateToProps)(EntryComponent);

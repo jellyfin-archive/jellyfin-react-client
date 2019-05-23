@@ -3,6 +3,7 @@ import ApiClient from "jellyfin-apiclient/src/apiclient";
 
 export default function connectToServer(serverAddress, port) {
     return (dispatch) => {
+        let plainServerAddress = serverAddress;
         serverAddress = normalizeAddress(serverAddress);
         serverAddress = serverAddress + ":" + port;
         var client = new ApiClient(null, serverAddress, "Jellyfin WebNG", '0.0.1', 'WebNG', 'WebNG', '');
@@ -10,12 +11,12 @@ export default function connectToServer(serverAddress, port) {
             client.getPublicSystemInfo().then(result => {
                 console.log("Connected");
                 console.log(result);
-                return (dispatch(connectSuccessful(serverAddress, port)));
+                return (dispatch(connectSuccessful(plainServerAddress, port)));
             })
         }
         catch (err) {
             console.log("Unable to connect.");
-            return dispatch(connectFailed(serverAddress, port));
+            return dispatch(connectFailed(plainServerAddress, port));
         }
     };
 }

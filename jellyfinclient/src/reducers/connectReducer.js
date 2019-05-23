@@ -3,18 +3,22 @@
  */
 import * as types from "../actions/ActionTypes";
 
-const initialState = {serverAddress:'http://localhost:8096/'}
+const initialState = { serverAddress: '', serverPort: '' }
 
 export default function connectReducer(state = initialState, action) {
     switch (action.type) {
         case types.CONNECT_SUCCESSFUL:
-            return {
-                ...state,...action.data, connectStatus:true
-            };
+            return Object.assign({}, state, {
+                serverAddress: action.address,
+                serverPort: action.port,
+                connectStatus: true
+            })
         case types.CONNECT_FAILED:
-            return {
-                ...state,...action.data, connectStatus:false
-            };
+            return Object.assign({}, state, {
+                serverAddress: action.address,
+                serverPort: action.port,
+                connectStatus: false
+            })
         default:
             return state;
     }
