@@ -3,7 +3,7 @@
  */
 import * as types from "../actions/ActionTypes";
 
-const initialState = { serverAddress: '', serverPort: '' }
+const initialState = { serverAddress: '', serverPort: '', connectStatus: false }
 
 export default function connectReducer(state = initialState, action) {
     switch (action.type) {

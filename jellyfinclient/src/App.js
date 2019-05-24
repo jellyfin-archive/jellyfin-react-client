@@ -10,7 +10,7 @@ import { Router, Switch, Route } from './utilities/routing/index';
 import { PersistGate } from 'redux-persist/integration/react';
 import Loading from './components/Loading';
 
-const { persistor, store } = configureStore()
+const { persistor, store } = configureStore();
 
 class App extends React.Component {
     render() {
