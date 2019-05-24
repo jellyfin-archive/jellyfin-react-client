@@ -26,6 +26,7 @@ const connectPersistConfig = {
     key: 'connectionStatus',
     storage: sensitiveStorage,
     stateReconciler: hardSet,
+    blacklist: ['connectStatus']
 }
 
 const rootReducer = combineReducers({
