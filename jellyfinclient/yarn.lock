@@ -6445,9 +6445,10 @@ iterall@^1.2.2:
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
   integrity sha512-yynBb1g+RFUPY64fTrFv7nsjRrENBQJaX2UL+2Szc9REFrSNm1rpSXHGzhmAy7a9uv3vlvgBlXnf9RqmPH1/DA==
 
-"jellyfin-apiclient@https://github.com/jellyfin/jellyfin-apiclient-javascript.git":
-  version "0.0.0"
-  resolved "https://github.com/jellyfin/jellyfin-apiclient-javascript.git#722bdd29611cb3ed3c8d76606e973067a068cdd2"
+jellyfin-apiclient@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jellyfin-apiclient/-/jellyfin-apiclient-1.0.0.tgz#2ac6293d7a7978acf126768d8d384ff40f97e942"
+  integrity sha512-ao0Ag/8s/FCoCJ1iN+sK/4k1AYxDiHSATLzwgxAikmOKFIuuuVnLIoloMnghjQHH0iYyyyIW0tgxKKuGWjIddQ==
 
 jest-changed-files@^23.4.2:
   version "23.4.2"
