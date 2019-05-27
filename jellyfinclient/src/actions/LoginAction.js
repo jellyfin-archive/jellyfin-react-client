@@ -2,21 +2,23 @@ import * as types from "./ActionTypes";
 
 export default function LoginAction(serverAddress, username, password) {
     return (dispatch) => {
-        console.log("Logging in with:", serverAddress, username, password)
-        dispatch(loginSuccessfully({serverAddress: serverAddress, username: username, password: password}))       
+        console.log("Logging in with:", serverAddress, username, password);
+        return (dispatch(loginSuccessfully(username, password)));
     }
 }
 
-function loginSuccessfully(payload) {
+function loginSuccessfully(username, password) {
     return {
         type: types.LOGIN_SUCCESSFUL,
-        data: payload
+        username,
+        password
     }
 }
 
-function loginFailed(payload) {
+function loginFailed(username, password) {
     return {
         type: types.LOGIN_FAILED,
-        data: payload
+        username,
+        password
     }
 }
