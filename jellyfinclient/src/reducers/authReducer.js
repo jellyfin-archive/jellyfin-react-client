@@ -6,14 +6,14 @@ export default function authReducer(state = initialState, action) {
     switch (action.type) {
         case types.LOGIN_SUCCESSFUL:
             return Object.assign({}, state, {
-                username: state.username,
-                password: state.password,
+                username: action.username,
+                password: action.password,
                 loginStatus: true
             });
         case types.LOGIN_FAILED:
             return Object.assign({}, state, {
-                username: state.username,
-                password: state.password,
+                username: action.username,
+                password: action.password,
                 loginStatus: false
             });
         default:
