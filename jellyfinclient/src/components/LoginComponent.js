@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Formik } from 'formik';
+import { connect } from "react-redux";
 import {
     Button,
     Text,
@@ -8,17 +9,16 @@ import {
     StatusBar
 } from 'react-native';
 import styles from './Style'
-import { Link } from '../utilities/routing/index';
 
-export default class LoginComponent extends Component {
+class LoginComponent extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            message: 'Welcome to login component of this app.',
+            message: 'Login with your user credentials:',
             usernameMessage: 'Username: ',
             passwordMessage: 'Password: ',
-            username: '',
-            password: '',
+            username: this.props.storage.authCredentials.username,
+            password: this.props.storage.authCredentials.password,
             loginButtonMessage: 'Login',
         };
     }
@@ -27,9 +27,6 @@ export default class LoginComponent extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar hidden />
-                <Text style={[styles.text, styles.biggerText]}>
-                    {this.state.message}
-                </Text>
                 <Formik
                     onSubmit={() => {
                         this.props.loginAction(this.state)
@@ -38,6 +35,11 @@ export default class LoginComponent extends Component {
                         handleSubmit,
                     }) => (
                             <View>
+                                <View style={styles.loginInput}>
+                                    <Text style={[styles.biggerText]}>
+                                        {this.state.message}
+                                    </Text>
+                                </View>
                                 <View style={styles.loginInput}>
                                     <Text style={styles.text}>
                                         {this.state.usernameMessage}
@@ -68,18 +70,13 @@ export default class LoginComponent extends Component {
                             </View>
                         )}
                 />
-                <Text style={[styles.text, styles.biggerText]}>
-                    Current data{"\n"}
-                    {this.state.usernameMessage} {this.props.username}{"\n"}
-                    {this.state.passwordMessage} {this.props.password}
-                </Text>
-
-                <View style={styles.button}>
-                    <Link to={'/'}>
-                        <Text>Go back.</Text>
-                    </Link>
-                </View>
             </View>
         );
     }
 }
+
+function mapStateToProps(storage) {
+    return { storage };
+}
+
+export default connect(mapStateToProps)(LoginComponent);

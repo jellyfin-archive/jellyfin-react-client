@@ -21,8 +21,6 @@ class LoginScreen extends Component {
         return (
             <LoginComponent
                 loginAction={this.loginAction}
-                username={this.props.authCredentials.username}
-                password={this.props.authCredentials.password}
             />
         );
     }
