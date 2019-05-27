@@ -36,7 +36,7 @@
     "formik": "^1.4.2",
     "fs-extra": "7.0.0",
     "is-electron": "^2.2.0",
-    "jellyfin-apiclient": "https://github.com/jellyfin/jellyfin-apiclient-javascript.git",
+    "jellyfin-apiclient": "^1.0.0",
     "prop-types": "^15.6.2",
     "react": "16.6.3",
     "react-app-polyfill": "^0.1.3",

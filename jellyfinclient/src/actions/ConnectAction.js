@@ -1,8 +1,9 @@
 import * as types from "./ActionTypes";
-import ApiClient from "jellyfin-apiclient/src/apiclient";
+import ApiClient from "jellyfin-apiclient/dist/apiclient";
 
-export default function connectToServer(serverAddress, port){
+export default function connectToServer(serverAddress, port) {
     return (dispatch) => {
+        let plainServerAddress = serverAddress;
         serverAddress = normalizeAddress(serverAddress);
         serverAddress = serverAddress + ":" + port;
         var client = new ApiClient(null, serverAddress, "Jellyfin WebNG", '0.0.1', 'WebNG', 'WebNG', '');
@@ -10,13 +11,12 @@ export default function connectToServer(serverAddress, port){
             client.getPublicSystemInfo().then(result => {
                 console.log("Connected");
                 console.log(result);
-                this.props.navigation.navigate('/login');
-                return (dispatch(connectSuccessful()));
-                })
+                return (dispatch(connectSuccessful(plainServerAddress, port)));
+            })
         }
         catch (err) {
             console.log("Unable to connect.");
-            return dispatch(connectFailed(err));
+            return dispatch(connectFailed(plainServerAddress, port));
         }
     };
 }
@@ -42,16 +42,18 @@ function normalizeAddress(serverAddress) {
     return serverAddress;
 }
 
-function connectSuccessful(payload) {
+function connectSuccessful(address, port) {
     return {
         type: types.CONNECT_SUCCESSFUL,
-        data: payload
+        address,
+        port
     };
 }
 
-function connectFailed(payload) {
+function connectFailed(address, port) {
     return {
         type: types.CONNECT_FAILED,
-        data: payload
+        address,
+        port
     };
 }
