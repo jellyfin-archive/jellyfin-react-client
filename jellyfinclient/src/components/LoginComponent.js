@@ -5,7 +5,7 @@ import {
     Text,
     View,
     TextInput,
-    StatusBar    
+    StatusBar
 } from 'react-native';
 import styles from './Style'
 import { Link } from '../utilities/routing/index';
@@ -17,8 +17,6 @@ export default class LoginComponent extends Component {
             message: 'Welcome to login component of this app.',
             usernameMessage: 'Username: ',
             passwordMessage: 'Password: ',
-            serverAddressMessage: 'Server address: ',
-            serverAddress: '',
             username: '',
             password: '',
             loginButtonMessage: 'Login',
@@ -26,9 +24,9 @@ export default class LoginComponent extends Component {
     }
 
     render() {
-        return (            
+        return (
             <View style={styles.container}>
-                <StatusBar hidden/>
+                <StatusBar hidden />
                 <Text style={[styles.text, styles.biggerText]}>
                     {this.state.message}
                 </Text>
@@ -65,28 +63,15 @@ export default class LoginComponent extends Component {
                                 </View>
 
                                 <View style={styles.loginInput}>
-                                    <Text style={styles.text}>
-                                        {this.state.serverAddressMessage}
-                                    </Text>
-                                    <View>
-                                        <TextInput style={[styles.text, styles.inputBox]}
-                                            onChangeText={(serverAddress) => this.setState({ serverAddress })}
-                                            value={this.state.serverAddress}
-                                        />
-                                    </View>
-                                </View>
-
-                                <View style={styles.loginInput}>
                                     <Button onPress={handleSubmit} title={this.state.loginButtonMessage} />
                                 </View>
                             </View>
                         )}
                 />
                 <Text style={[styles.text, styles.biggerText]}>
-                Current data{"\n"}
-                {this.state.usernameMessage} {this.props.username}{"\n"}
-                {this.state.passwordMessage} {this.props.password}{"\n"}
-                {this.state.serverAddressMessage} {this.props.serverAddress}
+                    Current data{"\n"}
+                    {this.state.usernameMessage} {this.props.username}{"\n"}
+                    {this.state.passwordMessage} {this.props.password}
                 </Text>
 
                 <View style={styles.button}>
