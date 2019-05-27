@@ -30,8 +30,8 @@ const connectPersistConfig = {
 }
 
 const rootReducer = combineReducers({
-    auth: persistReducer(authPersistConfig, AuthReducer),
-    connect: persistReducer(connectPersistConfig, ConnectReducer)
+    authCredentials: persistReducer(authPersistConfig, AuthReducer),
+    connectionStatus: persistReducer(connectPersistConfig, ConnectReducer)
 })
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)

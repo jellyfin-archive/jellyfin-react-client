@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
+import React, { Component } from 'react';
+import { connect } from "react-redux";
 
 import LoginAction from '../actions/LoginAction';
 
@@ -18,23 +18,23 @@ class LoginScreen extends Component {
     }
 
     render() {
-        return (            
+        return (
             <LoginComponent
                 loginAction={this.loginAction}
-                username={this.props.auth.username}
-                password={this.props.auth.password}
-                serverAddress={this.props.auth.serverAddress}
+                username={this.props.authCredentials.username}
+                password={this.props.authCredentials.password}
+                serverAddress={this.props.authCredentials.serverAddress}
             />
         );
     }
 
     loginAction(state) {
-        this.props.dispatch(LoginAction(state.serverAddress,state.username,state.password))
+        this.props.dispatch(LoginAction(state.serverAddress, state.username, state.password))
     }
 }
 // auth is the reducer key defined in ../utilities/storage/store.js
-function mapStateToProps({auth}) {
-    return ({auth})
+function mapStateToProps({ authCredentials }) {
+    return ({ authCredentials })
 }
 
 

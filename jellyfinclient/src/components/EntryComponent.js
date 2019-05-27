@@ -23,12 +23,12 @@ class EntryComponent extends Component {
     }
 
     componentDidMount() {
-        this.setState({ server: this.props.connect.serverAddress, port: this.props.connect.serverPort });
+        this.setState({ server: this.props.connectionStatus.serverAddress, port: this.props.connectionStatus.serverPort });
     }
 
     componentDidUpdate() {
-        if (this.state.connectStatus !== this.props.connect.connectStatus)
-            this.setState({ connectStatus: this.props.connect.connectStatus })
+        if (this.state.connectStatus !== this.props.connectionStatus.connectStatus)
+            this.setState({ connectStatus: this.props.connectionStatus.connectStatus })
     }
 
 
@@ -86,7 +86,7 @@ class EntryComponent extends Component {
 }
 
 function mapStateToProps(state) {
-    return { connect: state.connect };
+    return { connectionStatus: state.connectionStatus };
 }
 
 export default connect(mapStateToProps)(EntryComponent);
