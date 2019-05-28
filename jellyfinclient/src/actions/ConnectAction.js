@@ -1,5 +1,5 @@
 import * as types from "./ActionTypes";
-import ApiClient from "jellyfin-apiclient/dist/apiclient";
+import { ApiClient } from "jellyfin-apiclient";
 
 export default function connectToServer(serverAddress, port) {
     return (dispatch) => {
