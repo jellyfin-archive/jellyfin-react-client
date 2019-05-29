@@ -28,60 +28,63 @@ class LoginComponent extends Component {
 
     componentWillUpdate() {
         if (this.state.loginSuccess !== JFInterface.apiClient.isLoggedIn())
-            this.setState({ loginSuccess: JFInterface.apiClient.isLoggedIn() })
+            this.setState({ loginSuccess: JFInterface.apiClient.isLoggedIn() });
     }
 
     render() {
         return (
-            this.state.loginSuccess ?
-                <Redirect to="/home" />
+            !JFInterface.apiClient ?
+                <Redirect to="/" />
                 :
-                <View style={styles.container}>
-                    <StatusBar hidden />
-                    <Formik
-                        onSubmit={() => {
-                            this.props.loginAction(this.state)
-                        }}
-                        render={({
-                            handleSubmit,
-                        }) => (
-                                <View>
-                                    <View style={styles.loginInput}>
-                                        <Text style={[styles.biggerText]}>
-                                            {this.state.message}
-                                        </Text>
-                                    </View>
-                                    <View style={styles.loginInput}>
-                                        <Text style={styles.text}>
-                                            {this.state.usernameMessage}
-                                        </Text>
-                                        <View>
-                                            <TextInput style={[styles.text, styles.inputBox]}
-                                                onChangeText={(username) => this.setState({ username })}
-                                                value={this.state.username}
-                                            />
+                this.state.loginSuccess ?
+                    <Redirect to="/home" />
+                    :
+                    <View style={styles.container}>
+                        <StatusBar hidden />
+                        <Formik
+                            onSubmit={() => {
+                                this.props.loginAction(this.state)
+                            }}
+                            render={({
+                                handleSubmit,
+                            }) => (
+                                    <View>
+                                        <View style={styles.loginInput}>
+                                            <Text style={[styles.biggerText]}>
+                                                {this.state.message}
+                                            </Text>
+                                        </View>
+                                        <View style={styles.loginInput}>
+                                            <Text style={styles.text}>
+                                                {this.state.usernameMessage}
+                                            </Text>
+                                            <View>
+                                                <TextInput style={[styles.text, styles.inputBox]}
+                                                    onChangeText={(username) => this.setState({ username })}
+                                                    value={this.state.username}
+                                                />
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.loginInput}>
+                                            <Text style={styles.text}>
+                                                {this.state.passwordMessage}
+                                            </Text>
+                                            <View>
+                                                <TextInput secureTextEntry={true} style={[styles.text, styles.inputBox]}
+                                                    onChangeText={(password) => this.setState({ password })}
+                                                    value={this.state.password}
+                                                />
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.loginInput}>
+                                            <Button onPress={handleSubmit} title={this.state.loginButtonMessage} />
                                         </View>
                                     </View>
-
-                                    <View style={styles.loginInput}>
-                                        <Text style={styles.text}>
-                                            {this.state.passwordMessage}
-                                        </Text>
-                                        <View>
-                                            <TextInput secureTextEntry={true} style={[styles.text, styles.inputBox]}
-                                                onChangeText={(password) => this.setState({ password })}
-                                                value={this.state.password}
-                                            />
-                                        </View>
-                                    </View>
-
-                                    <View style={styles.loginInput}>
-                                        <Button onPress={handleSubmit} title={this.state.loginButtonMessage} />
-                                    </View>
-                                </View>
-                            )}
-                    />
-                </View>
+                                )}
+                        />
+                    </View>
         );
     }
 }

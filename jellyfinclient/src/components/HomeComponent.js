@@ -14,9 +14,12 @@ class HomeComponent extends Component {
     }
 
     async componentWillMount() {
-        console.log(this.props);
-        let newDemoText = await JFInterface.apiClient.getResumableItems(this.props.storage.authCredentials.userid);
-        newDemoText = await JSON.stringify(newDemoText);
+        let newDemoText
+        if (JFInterface.apiClient) {
+            newDemoText = await JFInterface.apiClient.getResumableItems(this.props.storage.authCredentials.userid);
+            newDemoText = await JSON.stringify(newDemoText);
+        }
+        else newDemoText = "NOT CONNECTED";
         this.setState({ demoText: newDemoText });
     }
 
