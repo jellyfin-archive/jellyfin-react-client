@@ -5,7 +5,6 @@ export default function LoginAction(username, password) {
     return async (dispatch) => {
         try {
             let auth = await JFInterface.apiClient.authenticateUserByName(username, password);
-            console.warn(auth);
             JFInterface.apiClient.setAuthenticationInfo(auth.AccessToken, auth.User.Id)
             return (dispatch(loginSuccessfully(auth.User.Name, auth.User.Id, auth.AccessToken)));
         } catch (e) {

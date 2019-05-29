@@ -11,13 +11,6 @@ export default function authReducer(state = initialState, action) {
                 token: action.token,
                 loginStatus: true
             });
-        case types.LOGIN_FAILED:
-            return Object.assign({}, state, {
-                username: action.username,
-                userid: action.userid,
-                token: action.token,
-                loginStatus: false
-            });
         default:
             return state;
     }
