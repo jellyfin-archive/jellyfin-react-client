@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { persistStore, persistReducer } from 'redux-persist'
-import thunk from "redux-thunk";
+import thunk from 'redux-thunk';
 import normalStorage from './normalStorage'
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
-import AuthReducer from "../../reducers/authReducer";
+import AuthReducer from '../../reducers/authReducer';
 import sensitiveStorage from './sensitiveStorage'
-import ConnectReducer from "../../reducers/connectReducer";
+import ConnectReducer from '../../reducers/connectReducer';
 
 const rootPersistConfig = {
     key: 'root',

@@ -1,4 +1,4 @@
-import * as types from "./ActionTypes";
+import * as types from './ActionTypes';
 import JFInterface from './ApiClient';
 
 export default function connectToServer(serverAddress, port) {

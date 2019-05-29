@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Formik } from 'formik';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import {
     Button,
     Text,
