@@ -1,14 +1,14 @@
 import * as types from "./ActionTypes";
-import { ApiClient } from "jellyfin-apiclient";
+import JFInterface from './ApiClient';
 
 export default function connectToServer(serverAddress, port) {
     return (dispatch) => {
         let plainServerAddress = serverAddress;
         serverAddress = normalizeAddress(serverAddress);
         serverAddress = serverAddress + ":" + port;
-        var client = new ApiClient(null, serverAddress, "Jellyfin WebNG", '0.0.1', 'WebNG', 'WebNG', '');
+        JFInterface.connect(serverAddress);
         try {
-            client.getPublicSystemInfo().then(result => {
+            JFInterface.apiClient.getPublicSystemInfo().then(result => {
                 console.log("Connected");
                 console.log(result);
                 return (dispatch(connectSuccessful(plainServerAddress, port)));
