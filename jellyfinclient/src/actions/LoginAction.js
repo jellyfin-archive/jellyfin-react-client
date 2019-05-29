@@ -1,24 +1,24 @@
 import * as types from "./ActionTypes";
+import JFInterface from './ApiClient';
 
-export default function LoginAction(serverAddress, username, password) {
-    return (dispatch) => {
-        console.log("Logging in with:", serverAddress, username, password);
-        return (dispatch(loginSuccessfully(username, password)));
+export default function LoginAction(username, password) {
+    return async (dispatch) => {
+        try {
+            let auth = await JFInterface.apiClient.authenticateUserByName(username, password);
+            console.warn(auth);
+            JFInterface.apiClient.setAuthenticationInfo(auth.AccessToken, auth.User.Id)
+            return (dispatch(loginSuccessfully(auth.User.Name, auth.User.Id, auth.AccessToken)));
+        } catch (e) {
+            console.error("Could not login. Check credentials and network connection.")
+        }
     }
 }
 
-function loginSuccessfully(username, password) {
+function loginSuccessfully(username, userid, token) {
     return {
         type: types.LOGIN_SUCCESSFUL,
         username,
-        password
-    }
-}
-
-function loginFailed(username, password) {
-    return {
-        type: types.LOGIN_FAILED,
-        username,
-        password
+        userid,
+        token
     }
 }

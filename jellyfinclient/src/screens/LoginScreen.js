@@ -27,7 +27,6 @@ class LoginScreen extends Component {
 
     loginAction(state) {
         this.props.dispatch(LoginAction(
-            this.props.storage.connectionStatus.serverAddress + ":" + this.props.storage.connectionStatus.serverPort,
             state.username, state.password));
     }
 }
