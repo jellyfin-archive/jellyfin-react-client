@@ -9,6 +9,7 @@ import configureStore from "./utilities/storage/store";
 import { Router, Switch, Route } from './utilities/routing/index';
 import { PersistGate } from 'redux-persist/integration/react';
 import Loading from './components/Loading';
+import HomeComponent from './components/HomeComponent';
 
 const { persistor, store } = configureStore();
 
@@ -21,6 +22,7 @@ class App extends React.Component {
                         <Switch>
                             <Route exact path='/' component={EntryScreen} />
                             <Route exact path='/login' component={LoginScreen} />
+                            <Route exact path='/home' component={HomeComponent} />
                             <Route exact path='/index.html' component={ElectronRedirect} />
                             <Route component={NoMatch} />
                         </Switch>
