@@ -28,8 +28,8 @@ class HomeComponent extends Component {
             <View style={styles.container}>
                 <Text style={[styles.biggerText]}>
                     DEMO-STRING (your resumable items):
-                    <br />
-                    <br />
+                    {"\n"}
+                    {"\n"}
                     {this.state.demoText}
                 </Text>
             </View>

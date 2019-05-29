@@ -1,4 +1,4 @@
-import { ApiClient } from 'jellyfin-apiclient';
+import ApiClient from 'jellyfin-apiclient/dist/apiclient';
 
 const JFInterface = {
     apiClient: undefined,
