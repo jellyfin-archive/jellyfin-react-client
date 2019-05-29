@@ -26,7 +26,7 @@ class LoginComponent extends Component {
         };
     }
 
-    componentWillUpdate() {
+    componentDidUpdate() {
         if (this.state.loginSuccess !== JFInterface.apiClient.isLoggedIn())
             this.setState({ loginSuccess: JFInterface.apiClient.isLoggedIn() });
     }

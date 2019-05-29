@@ -13,7 +13,7 @@ class HomeComponent extends Component {
         demoText: ""
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         let newDemoText
         if (JFInterface.apiClient) {
             newDemoText = await JFInterface.apiClient.getResumableItems(this.props.storage.authCredentials.userid);
