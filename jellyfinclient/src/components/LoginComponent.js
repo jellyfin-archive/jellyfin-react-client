@@ -20,7 +20,7 @@ class LoginComponent extends Component {
             usernameMessage: 'Username: ',
             passwordMessage: 'Password: ',
             username: this.props.storage.authCredentials.username,
-            password: this.props.storage.authCredentials.password,
+            password: '',
             loginButtonMessage: 'Login',
             loginSuccess: false
         };
