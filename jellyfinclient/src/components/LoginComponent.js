@@ -33,60 +33,62 @@ class LoginComponent extends Component {
     }
 
     render() {
+        return this.calculateContent();
+    }
+
+    calculateContent() {
+        if (!this.props.storage.jellyfinInterface.apiClient)
+            return <Redirect to="/" />;
+        if (this.state.loginSuccess)
+            return <Redirect to="/home" />
         return (
-            !this.props.storage.jellyfinInterface.apiClient ?
-                <Redirect to="/" />
-                :
-                this.state.loginSuccess ?
-                    <Redirect to="/home" />
-                    :
-                    <View style={styles.container}>
-                        <StatusBar hidden />
-                        <Formik
-                            onSubmit={() => {
-                                loginToJellyfin(this.state.username, this.state.password)
-                            }}
-                            render={({
-                                handleSubmit,
-                            }) => (
+            <View style={styles.container}>
+                <StatusBar hidden />
+                <Formik
+                    onSubmit={() => {
+                        loginToJellyfin(this.state.username, this.state.password)
+                    }}
+                    render={({
+                        handleSubmit,
+                    }) => (
+                            <View>
+                                <View style={styles.loginInput}>
+                                    <Text style={[styles.biggerText]}>
+                                        {this.state.message}
+                                    </Text>
+                                </View>
+                                <View style={styles.loginInput}>
+                                    <Text style={styles.text}>
+                                        {this.state.usernameMessage}
+                                    </Text>
                                     <View>
-                                        <View style={styles.loginInput}>
-                                            <Text style={[styles.biggerText]}>
-                                                {this.state.message}
-                                            </Text>
-                                        </View>
-                                        <View style={styles.loginInput}>
-                                            <Text style={styles.text}>
-                                                {this.state.usernameMessage}
-                                            </Text>
-                                            <View>
-                                                <TextInput style={[styles.text, styles.inputBox]}
-                                                    onChangeText={(username) => this.setState({ username })}
-                                                    value={this.state.username}
-                                                />
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.loginInput}>
-                                            <Text style={styles.text}>
-                                                {this.state.passwordMessage}
-                                            </Text>
-                                            <View>
-                                                <TextInput secureTextEntry={true} style={[styles.text, styles.inputBox]}
-                                                    onChangeText={(password) => this.setState({ password })}
-                                                    value={this.state.password}
-                                                />
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.loginInput}>
-                                            <Button onPress={handleSubmit} title={this.state.loginButtonMessage} />
-                                        </View>
+                                        <TextInput style={[styles.text, styles.inputBox]}
+                                            onChangeText={(username) => this.setState({ username })}
+                                            value={this.state.username}
+                                        />
                                     </View>
-                                )}
-                        />
-                    </View>
-        );
+                                </View>
+
+                                <View style={styles.loginInput}>
+                                    <Text style={styles.text}>
+                                        {this.state.passwordMessage}
+                                    </Text>
+                                    <View>
+                                        <TextInput secureTextEntry={true} style={[styles.text, styles.inputBox]}
+                                            onChangeText={(password) => this.setState({ password })}
+                                            value={this.state.password}
+                                        />
+                                    </View>
+                                </View>
+
+                                <View style={styles.loginInput}>
+                                    <Button onPress={handleSubmit} title={this.state.loginButtonMessage} />
+                                </View>
+                            </View>
+                        )}
+                />
+            </View>
+        )
     }
 }
 
