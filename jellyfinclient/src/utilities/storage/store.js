@@ -37,8 +37,12 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default () => {
+const createJellyfinStore = () => {
     let store = createStore(persistedReducer, {}, composeEnhancers(applyMiddleware(thunk)))
     let persistor = persistStore(store)
     return { store, persistor }
 }
+
+const jellyfinStore = createJellyfinStore();
+
+export default jellyfinStore;
