@@ -9,8 +9,7 @@ import ConnectReducer from '../../reducers/connectReducer';
 
 const rootPersistConfig = {
     key: 'root',
-    storage: normalStorage,
-    blacklist: ['auth']
+    storage: normalStorage
 }
 
 
@@ -20,6 +19,7 @@ const authPersistConfig = {
     key: 'authCredentials',
     storage: sensitiveStorage,
     stateReconciler: hardSet,
+    blacklist: ['loginStatus']
 }
 
 const connectPersistConfig = {
