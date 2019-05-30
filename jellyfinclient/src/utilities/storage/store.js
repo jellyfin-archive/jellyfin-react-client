@@ -6,6 +6,7 @@ import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 import AuthReducer from '../../reducers/authReducer';
 import sensitiveStorage from './sensitiveStorage'
 import ConnectReducer from '../../reducers/connectReducer';
+import InterfaceReducer from "../../reducers/interfaceReducer";
 
 const rootPersistConfig = {
     key: 'root',
@@ -29,9 +30,17 @@ const connectPersistConfig = {
     blacklist: ['connectStatus']
 }
 
+const interfacePersistConfig = {
+    key: 'jellyfinInterface',
+    storage: sensitiveStorage,
+    stateReconciler: hardSet,
+    blacklist: ['apiClient']
+}
+
 const rootReducer = combineReducers({
     authCredentials: persistReducer(authPersistConfig, AuthReducer),
-    connectionStatus: persistReducer(connectPersistConfig, ConnectReducer)
+    connectionStatus: persistReducer(connectPersistConfig, ConnectReducer),
+    jellyfinInterface: persistReducer(interfacePersistConfig, InterfaceReducer)
 })
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
