@@ -1,14 +1,16 @@
 import * as types from './ActionTypes';
-import JFInterface from './ApiClient';
+import { connectToJellyfin } from './ApiFunctions';
+import jellyfinStore from '../utilities/storage/store'
 
 export default function connectToServer(serverAddress, port) {
     return (dispatch) => {
         let plainServerAddress = serverAddress;
         serverAddress = normalizeAddress(serverAddress);
         serverAddress = serverAddress + ":" + port;
-        JFInterface.connect(serverAddress);
+        connectToJellyfin(serverAddress);
         try {
-            JFInterface.apiClient.getPublicSystemInfo().then(result => {
+            let apiClient = jellyfinStore.store.getState().jellyfinInterface.apiClient;
+            apiClient.getPublicSystemInfo().then(result => {
                 console.log("Connected");
                 console.log(result);
                 return (dispatch(connectSuccessful(plainServerAddress, port)));

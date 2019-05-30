@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import styles from './Style'
 import { Redirect } from '../utilities/routing'
-import JFInterface from '../actions/ApiClient';
+import { loginToJellyfin } from '../actions/ApiFunctions';
 
 class LoginComponent extends Component {
     constructor(props, context) {
@@ -27,13 +27,14 @@ class LoginComponent extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.loginSuccess !== JFInterface.apiClient.isLoggedIn())
-            this.setState({ loginSuccess: JFInterface.apiClient.isLoggedIn() });
+        let isloggedin = this.props.storage.jellyfinInterface.apiClient.isLoggedIn();
+        if (this.state.loginSuccess !== isloggedin)
+            this.setState({ loginSuccess: isloggedin });
     }
 
     render() {
         return (
-            !JFInterface.apiClient ?
+            !this.props.storage.jellyfinInterface.apiClient ?
                 <Redirect to="/" />
                 :
                 this.state.loginSuccess ?
@@ -43,7 +44,7 @@ class LoginComponent extends Component {
                         <StatusBar hidden />
                         <Formik
                             onSubmit={() => {
-                                this.props.loginAction(this.state)
+                                loginToJellyfin(this.state.username, this.state.password)
                             }}
                             render={({
                                 handleSubmit,

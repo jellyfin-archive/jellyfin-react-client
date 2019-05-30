@@ -5,8 +5,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import styles from './Style'
-import JFInterface from '../actions/ApiClient';
+import styles from './Style';
 
 class HomeComponent extends Component {
     state = {
@@ -14,9 +13,10 @@ class HomeComponent extends Component {
     }
 
     async componentDidMount() {
-        let newDemoText
-        if (JFInterface.apiClient) {
-            newDemoText = await JFInterface.apiClient.getResumableItems(this.props.storage.authCredentials.userid);
+        let apiClient = this.props.storage.jellyfinInterface.apiClient;
+        let newDemoText;
+        if (apiClient) {
+            newDemoText = await apiClient.getResumableItems(this.props.storage.authCredentials.userid);
             newDemoText = await JSON.stringify(newDemoText);
         }
         else newDemoText = "NOT CONNECTED";
@@ -37,8 +37,8 @@ class HomeComponent extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return { storage: state };
+function mapStateToProps(storage) {
+    return { storage };
 }
 
 export default connect(mapStateToProps)(HomeComponent);
