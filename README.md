@@ -16,6 +16,9 @@ All the following commands are run inside the `jellyfinclient` directory
 yarn run android
 yarn run ios
 ```
+
+Android requires the `ANDROID_HOME` variable to be set.
+
 In case of problems, this [tutorial](https://facebook.github.io/react-native/docs/running-on-device.html) will help you to configure your environment.
 
 ### Desktop (Electron)
