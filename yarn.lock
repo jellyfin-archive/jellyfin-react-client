@@ -10024,7 +10024,7 @@ react-native-tab-view@1.2.0:
   dependencies:
     prop-types "^15.6.0"
 
-"react-native-web-extended@github:piranna/react-native-web-extended":
+react-native-web-extended@piranna/react-native-web-extended:
   version "0.0.7"
   resolved "https://codeload.github.com/piranna/react-native-web-extended/tar.gz/8022b57d90f4740dbfa9c681c8f21faed25b8023"
   dependencies:
