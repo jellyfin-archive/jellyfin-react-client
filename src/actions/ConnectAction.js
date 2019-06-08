@@ -1,14 +1,16 @@
-import * as types from "./ActionTypes";
-import ApiClient from "jellyfin-apiclient/dist/apiclient";
+import * as types from './ActionTypes';
+import { connectToJellyfin } from './ApiFunctions';
+import jellyfinStore from '../utilities/storage/store'
 
 export default function connectToServer(serverAddress, port) {
     return (dispatch) => {
         let plainServerAddress = serverAddress;
         serverAddress = normalizeAddress(serverAddress);
         serverAddress = serverAddress + ":" + port;
-        var client = new ApiClient(null, serverAddress, "Jellyfin WebNG", '0.0.1', 'WebNG', 'WebNG', '');
+        connectToJellyfin(serverAddress);
         try {
-            client.getPublicSystemInfo().then(result => {
+            let apiClient = jellyfinStore.store.getState().jellyfinInterface.apiClient;
+            apiClient.getPublicSystemInfo().then(result => {
                 console.log("Connected");
                 console.log(result);
                 return (dispatch(connectSuccessful(plainServerAddress, port)));

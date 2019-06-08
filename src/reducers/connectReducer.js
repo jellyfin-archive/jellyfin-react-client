@@ -1,7 +1,4 @@
-/**
- * Created by amoghbanta on 04/02/17.
- */
-import * as types from "../actions/ActionTypes";
+import * as types from '../actions/ActionTypes';
 
 const initialState = { serverAddress: '', serverPort: '', connectStatus: false }
 

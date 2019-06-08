@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import ConnectAction from '../actions/ConnectAction';
 import EntryComponent from '../components/EntryComponent'
 

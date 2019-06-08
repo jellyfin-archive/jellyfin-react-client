@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import styles from './Style'
 import { Formik } from 'formik';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { Redirect } from '../utilities/routing'
 
 
