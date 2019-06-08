@@ -10,7 +10,7 @@
     "android:clean": "cd android && ./gradlew clean",
     "android:dev_menu": "adb shell input keyevent KEYCODE_MENU",
     "android:emulator": "scripts/android_emulator.js",
-    "android:kill_server": "fuser -k 8081/tcp || true",
+    "android:kill_server": "scripts/kill_server.sh",
     "android:log": "react-native log-android",
     "android:release": "cd android && ./gradlew assembleRelease",
     "electron": "electron build",
