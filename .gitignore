@@ -62,3 +62,9 @@ buck-out/
 *.jsbundle
 electron/
 public/favicon*
+
+# Spacemacs
+**/.#*
+
+# TernJS
+*/.tern-port
