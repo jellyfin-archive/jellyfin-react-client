@@ -1,6 +1,10 @@
-import * as types from '../actions/ActionTypes';
+import * as types from "../actions/ActionTypes";
 
-const initialState = { serverAddress: '', serverPort: '', connectStatus: false }
+const initialState = {
+    serverAddress: "",
+    serverPort: "",
+    connectStatus: false
+};
 
 export default function connectReducer(state = initialState, action) {
     switch (action.type) {
@@ -9,13 +13,13 @@ export default function connectReducer(state = initialState, action) {
                 serverAddress: action.address,
                 serverPort: action.port,
                 connectStatus: true
-            })
+            });
         case types.CONNECT_FAILED:
             return Object.assign({}, state, {
                 serverAddress: action.address,
                 serverPort: action.port,
                 connectStatus: false
-            })
+            });
         default:
             return state;
     }

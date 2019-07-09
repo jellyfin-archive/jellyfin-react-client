@@ -1,25 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import ConnectAction from '../actions/ConnectAction';
-import EntryComponent from '../components/EntryComponent'
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import ConnectAction from "../actions/ConnectAction";
+import EntryComponent from "../components/EntryComponent";
 
 class EntryScreen extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            server: '',
-            port: ''
+            server: "",
+            port: ""
         };
         this.connectAction = this.connectAction.bind(this);
     }
 
     render() {
-        return (
-            <EntryComponent
-                connectAction={this.connectAction}
-            />
-        );
+        return <EntryComponent connectAction={this.connectAction} />;
     }
 
     connectAction(state) {
@@ -29,7 +24,7 @@ class EntryScreen extends Component {
 
 // auth and sample are the reducer keys defined in ../utilities/storage/store.js
 function mapStateToProps({ connect }) {
-    return ({ connect })
+    return { connect };
 }
 
 export default connect(mapStateToProps)(EntryScreen);

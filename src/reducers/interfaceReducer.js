@@ -1,6 +1,6 @@
-import * as types from '../actions/ActionTypes';
+import * as types from "../actions/ActionTypes";
 
-const initialState = { apiClient: undefined }
+const initialState = { apiClient: undefined };
 
 export default function interfaceReducer(state = initialState, action) {
     switch (action.type) {

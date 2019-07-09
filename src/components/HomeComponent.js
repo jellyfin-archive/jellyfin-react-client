@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
-import {
-    View,
-    Text
-} from 'react-native';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { View, Text } from "react-native";
+import { connect } from "react-redux";
 
-import styles from './Style';
+import styles from "./Style";
 
 class HomeComponent extends Component {
     state = {
         demoText: ""
-    }
+    };
 
     async componentDidMount() {
         let apiClient = this.props.storage.jellyfinInterface.apiClient;
@@ -18,8 +15,7 @@ class HomeComponent extends Component {
         if (apiClient) {
             newDemoText = await apiClient.getResumableItems(this.props.storage.authCredentials.userid);
             newDemoText = await JSON.stringify(newDemoText);
-        }
-        else newDemoText = "NOT CONNECTED";
+        } else newDemoText = "NOT CONNECTED";
         this.setState({ demoText: newDemoText });
     }
 
@@ -33,7 +29,7 @@ class HomeComponent extends Component {
                     {this.state.demoText}
                 </Text>
             </View>
-        )
+        );
     }
 }
 

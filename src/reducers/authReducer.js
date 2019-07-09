@@ -1,6 +1,11 @@
-import * as types from '../actions/ActionTypes';
+import * as types from "../actions/ActionTypes";
 
-const initialState = { username: '', userid: '', token: '', loginStatus: false }
+const initialState = {
+    username: "",
+    userid: "",
+    token: "",
+    loginStatus: false
+};
 
 export default function authReducer(state = initialState, action) {
     switch (action.type) {

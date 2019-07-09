@@ -1,9 +1,5 @@
-import React, { Component } from 'react';
-import {
-    ActivityIndicator,
-    StyleSheet,
-    View,
-  } from 'react-native'
+import React, { Component } from "react";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 
 // This is a loading component that is common for native and web
 
@@ -19,12 +15,12 @@ export default class Loading extends Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center'
+        flex: 1,
+        justifyContent: "center"
     },
     horizontal: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      padding: 10
+        flexDirection: "row",
+        justifyContent: "space-around",
+        padding: 10
     }
-  })
+});
