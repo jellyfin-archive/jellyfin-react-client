@@ -12,23 +12,23 @@ import HomeComponent from "./components/HomeComponent";
 import LoginComponent from "./components/LoginComponent";
 
 class App extends React.Component {
-  render() {
-    return (
-      <Provider store={jellyfinStore.store}>
-        <PersistGate loading={<Loading />} persistor={jellyfinStore.persistor}>
-          <Router>
-            <Switch>
-              <Route exact path="/" component={EntryScreen} />
-              <Route exact path="/login" component={LoginComponent} />
-              <Route exact path="/home" component={HomeComponent} />
-              <Route exact path="/index.html" component={ElectronRedirect} />
-              <Route component={NoMatch} />
-            </Switch>
-          </Router>
-        </PersistGate>
-      </Provider>
-    );
-  }
+    render() {
+        return (
+            <Provider store={jellyfinStore.store}>
+                <PersistGate loading={<Loading />} persistor={jellyfinStore.persistor}>
+                    <Router>
+                        <Switch>
+                            <Route exact path="/" component={EntryScreen} />
+                            <Route exact path="/login" component={LoginComponent} />
+                            <Route exact path="/home" component={HomeComponent} />
+                            <Route exact path="/index.html" component={ElectronRedirect} />
+                            <Route component={NoMatch} />
+                        </Switch>
+                    </Router>
+                </PersistGate>
+            </Provider>
+        );
+    }
 }
 
 export default App;
