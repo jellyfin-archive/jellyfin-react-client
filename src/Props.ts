@@ -1,4 +1,6 @@
 // Contains the definition for the props used in Jellyfin
+import { ActionTypes } from "./actions/ActionTypes";
+
 export interface Action {
     type: ActionTypes,
     username: string,
@@ -11,7 +13,8 @@ export interface Storage {
         apiClient: any
     },
     authCredentials: {
-        userid: string
+        userid: string,
+        username: string
     }
 }
 export interface ConnectionStatus {

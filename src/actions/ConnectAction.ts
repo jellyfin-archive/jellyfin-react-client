@@ -1,6 +1,7 @@
 import * as types from "./ActionTypes";
 import { connectToJellyfin } from "./ApiFunctions";
 import jellyfinStore from "../utilities/storage/store";
+import { ActionTypes } from "./ActionTypes";
 
 export default function connectToServer(serverAddress: string, port: string) {
     return (dispatch: any) => {
@@ -49,7 +50,7 @@ function normalizeAddress(serverAddress: string) {
 
 function connectSuccessful(address: string, port: string) {
     return {
-        type: types.CONNECT_SUCCESSFUL,
+        type: ActionTypes.CONNECT_SUCCESSFUL,
         address,
         port
     };
@@ -57,7 +58,7 @@ function connectSuccessful(address: string, port: string) {
 
 function connectFailed(address: string, port: string) {
     return {
-        type: types.CONNECT_FAILED,
+        type: ActionTypes.CONNECT_FAILED,
         address,
         port
     };
