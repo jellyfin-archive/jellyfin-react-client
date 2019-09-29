@@ -6,24 +6,27 @@ import { connect } from "react-redux";
 import { Redirect } from "../utilities/routing";
 import { ConnectionStatus, JellyfinProps } from "../Props";
 
-interface EntryComponentState {
+export interface EntryComponentState {
     server: string,
     port: string,
-    connectButtonMessage?: string,
-    connectionStatus: ConnectionStatus
+    connectButtonMessage: string,
+    connectionStatus: ConnectionStatus,
 }
 
 class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
-    state = {
-        server: "",
-        port: "",
-        connectButtonMessage: "Connect",
-        connectionStatus : {
-            serverAddress: "",
-            serverPort: "",
-            connectStatus: false
-        }
-    };
+    constructor(props: JellyfinProps) {
+        super(props);
+        this.state = {
+            server: "",
+            port: "",
+            connectButtonMessage: "Connect",
+            connectionStatus : {
+                serverAddress: "",
+                serverPort: "",
+                connectStatus: false
+            },
+        };
+    }
 
     componentDidMount() {
         this.setState({
