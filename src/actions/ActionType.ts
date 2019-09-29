@@ -1,6 +1,6 @@
 // This file serves as a common location for all your action constants
 
-export enum ActionTypes {
+export enum ActionType {
     CONNECT_SUCCESSFUL = "CONNECT_SUCCESSFUL",
     CONNECT_FAILED = "CONNECT_FAILED",
     LOGIN_SUCCESSFUL = "LOGIN_SUCCESSFUL",

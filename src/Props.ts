@@ -1,13 +1,16 @@
 // Contains the definition for the props used in Jellyfin
-import { ActionTypes } from "./actions/ActionTypes";
+import { ActionType } from "./actions/ActionType";
 
-export interface Action {
-    type: ActionTypes,
+export interface JellyfinAction {
+    type: ActionType,
     username: string,
     userid: string,
     token: string,
-    loginStatus: boolean
+    loginStatus: boolean,
+    address: string,
+    port: string
 }
+
 export interface Storage {
     jellyfinInterface: {
         apiClient: any

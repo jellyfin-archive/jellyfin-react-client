@@ -1,4 +1,5 @@
-import * as types from "../actions/ActionTypes";
+import { ActionType } from "../actions/ActionType";
+import { JellyfinAction } from "../Props";
 
 const initialState = {
     serverAddress: "",
@@ -6,15 +7,15 @@ const initialState = {
     connectStatus: false
 };
 
-export default function connectReducer(state = initialState, action) {
+export default function connectReducer(state = initialState, action: JellyfinAction) {
     switch (action.type) {
-        case types.CONNECT_SUCCESSFUL:
+        case ActionType.CONNECT_SUCCESSFUL:
             return Object.assign({}, state, {
                 serverAddress: action.address,
                 serverPort: action.port,
                 connectStatus: true
             });
-        case types.CONNECT_FAILED:
+        case ActionType.CONNECT_FAILED:
             return Object.assign({}, state, {
                 serverAddress: action.address,
                 serverPort: action.port,

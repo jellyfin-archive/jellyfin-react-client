@@ -1,5 +1,5 @@
-import { Action } from "../Props";
-import { ActionTypes } from "../actions/ActionTypes";
+import { JellyfinAction } from "../Props";
+import { ActionType } from "../actions/ActionType";
 
 const initialState = {
     username: "",
@@ -8,8 +8,8 @@ const initialState = {
     loginStatus: false
 };
 
-export default function authReducer(state = initialState, action: Action) {
-    if (action.type === ActionTypes.LOGIN_SUCCESSFUL) {
+export default function authReducer(state = initialState, action: JellyfinAction) {
+    if (action.type === ActionType.LOGIN_SUCCESSFUL) {
         return Object.assign({}, state, {
             username: action.username,
             userid: action.userid,
