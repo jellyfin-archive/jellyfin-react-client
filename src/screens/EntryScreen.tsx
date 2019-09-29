@@ -16,7 +16,7 @@ class EntryScreen extends Component<JellyfinProps> {
 
 // auth and sample are the reducer keys defined in ../utilities/storage/store.ts
 function mapStateToProps(state: any) {
-    return state.connect;
+    return state;
 }
 
 export default connect(mapStateToProps)(EntryScreen);

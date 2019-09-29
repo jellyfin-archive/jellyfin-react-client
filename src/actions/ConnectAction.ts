@@ -34,7 +34,6 @@ function replaceAll(originalString: string, strReplace: string, strWith: string)
 
 function normalizeAddress(serverAddress: string) {
     // attempt to correct bad input
-    if(!serverAddress) serverAddress = "http://localhost";
     serverAddress = serverAddress.trim();
 
     if (serverAddress.toLowerCase().indexOf("http") !== 0) {
