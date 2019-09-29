@@ -1,11 +1,17 @@
 // Contains the definition for the props used in Jellyfin
+export interface Action {
+    type: ActionTypes,
+    username: string,
+    userid: string,
+    token: string,
+    loginStatus: boolean
+}
 export interface Storage {
     jellyfinInterface: {
         apiClient: any
     },
     authCredentials: {
-        userid: string,
-        username: string
+        userid: string
     }
 }
 export interface ConnectionStatus {
