@@ -21,8 +21,7 @@
         ],
         "lib": [
             "esnext",
-            "dom",
-            "node"
+            "dom"
         ],
         "typeRoots": [
             "./types",
