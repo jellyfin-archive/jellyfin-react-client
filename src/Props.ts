@@ -1,9 +1,12 @@
 // Contains the definition for the props used in Jellyfin
 export interface Storage {
-    jellyfinInterface : {
+    jellyfinInterface: {
         apiClient: any
     },
-    authCredentials: any
+    authCredentials: {
+        userid: string,
+        username: string
+    }
 }
 export interface ConnectionStatus {
     serverAddress: string,

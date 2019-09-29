@@ -7,7 +7,7 @@ import { Redirect } from "../utilities/routing";
 import { loginToJellyfin } from "../actions/ApiFunctions";
 import { JellyfinProps } from "../Props";
 
-class LoginComponent extends Component<JellyfinProps, any> {
+class LoginComponent extends Component<JellyfinProps> {
     state = {
         message: "Login with your user credentials:",
         usernameMessage: "Username: ",
@@ -19,8 +19,8 @@ class LoginComponent extends Component<JellyfinProps, any> {
     };
 
     componentDidUpdate() {
-        let isloggedin = this.props.storage.jellyfinInterface.apiClient.isLoggedIn();
-        if (this.state.loginSuccess !== isloggedin) this.setState({ loginSuccess: isloggedin });
+        const isLoggedIn = this.props.storage.jellyfinInterface.apiClient.isLoggedIn();
+        if (this.state.loginSuccess !== isLoggedIn) this.setState({ loginSuccess: isLoggedIn });
     }
 
     render() {
@@ -69,8 +69,13 @@ class LoginComponent extends Component<JellyfinProps, any> {
     }
 }
 
-function mapStateToProps(storage: any) {
-    return { storage };
+function mapStateToProps(storage: Storage) {
+    return {
+        storage: {
+            jellyfinInterface: storage.jellyfinInterface,
+            authCredentials: storage.authCredentials
+        }
+    };
 }
 
 export default connect(mapStateToProps)(LoginComponent);
