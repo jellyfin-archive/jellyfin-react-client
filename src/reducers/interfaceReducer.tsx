@@ -1,14 +1,14 @@
-import * as types from "../actions/ActionType";
+import { JellyfinAction } from "../Props";
+import { ActionType } from "../actions/ActionType";
 
 const initialState = { apiClient: undefined };
 
-export default function interfaceReducer(state = initialState, action) {
-    switch (action.type) {
-        case types.UPDATE_APICLIENT:
-            return Object.assign({}, state, {
-                apiClient: action.apiClient
-            });
-        default:
-            return state;
+export default function interfaceReducer(state = initialState, action: JellyfinAction) {
+    if (action.type === ActionType.UPDATE_APICLIENT) {
+        return Object.assign({}, state, {
+            apiClient: action.apiClient
+        });
+    } else {
+        return state;
     }
 }

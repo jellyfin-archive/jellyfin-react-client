@@ -8,7 +8,8 @@ export interface JellyfinAction {
     token: string,
     loginStatus: boolean,
     address: string,
-    port: string
+    port: string,
+    apiClient: any
 }
 
 export interface Storage {
