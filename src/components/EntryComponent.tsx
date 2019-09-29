@@ -3,14 +3,15 @@ import { View, TextInput, Button, Image } from "react-native";
 import styles from "./Style";
 import { Formik } from "formik";
 import { connect } from "react-redux";
-import { Redirect } from "../utilities/routing";
+import { Redirect } from "react-router";
 import { ConnectionStatus, JellyfinProps } from "../Props";
+import ConnectAction from "../actions/ConnectAction";
 
 export interface EntryComponentState {
     server: string,
     port: string,
     connectButtonMessage: string,
-    connectionStatus: ConnectionStatus,
+    connectionStatus: ConnectionStatus
 }
 
 class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
@@ -55,7 +56,7 @@ class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
                 <Formik
                     initialValues={{}}
                     onSubmit={() => {
-                        this.props.connectAction(this.state);
+                        this.props.dispatch(ConnectAction(this.state.server, this.state.port));
                     }}
                     render={props => (
                         <View>

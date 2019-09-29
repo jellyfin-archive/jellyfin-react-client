@@ -75,7 +75,7 @@ function mapStateToProps(storage: Storage) {
             jellyfinInterface: storage.jellyfinInterface,
             authCredentials: storage.authCredentials
         }
-    };
+    } as JellyfinProps;
 }
 
 export default connect(mapStateToProps)(LoginComponent);

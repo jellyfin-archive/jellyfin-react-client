@@ -1,10 +1,11 @@
 // Contains the definition for the props used in Jellyfin
 import { ActionType } from "./actions/ActionType";
+import { AnyAction, Dispatch } from "redux";
 
 export interface JellyfinAction {
     type: ActionType,
     username: string,
-    userid: string,
+    userId: string,
     token: string,
     loginStatus: boolean,
     address: string,
@@ -17,7 +18,7 @@ export interface Storage {
         apiClient: any
     },
     authCredentials: {
-        userid: string,
+        userId: string,
         username: string
     }
 }
@@ -29,6 +30,7 @@ export interface ConnectionStatus {
 
 export interface JellyfinProps {
     connectionStatus: ConnectionStatus,
-    connectAction: any,
-    storage: Storage
+    connectAction: (state: any) => void,
+    storage: Storage,
+    dispatch: (dispatch: Dispatch<AnyAction>) => void,
 }

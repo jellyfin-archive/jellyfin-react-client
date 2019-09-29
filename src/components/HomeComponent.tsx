@@ -5,7 +5,11 @@ import { connect } from "react-redux";
 import styles from "./Style";
 import { JellyfinProps, Storage } from "../Props";
 
-class HomeComponent extends Component<JellyfinProps> {
+interface HomeComponentState {
+    demoText: string
+}
+
+class HomeComponent extends Component<JellyfinProps, HomeComponentState> {
     state = {
         demoText: ""
     };
@@ -14,7 +18,7 @@ class HomeComponent extends Component<JellyfinProps> {
         const apiClient = this.props.storage.jellyfinInterface.apiClient;
         let newDemoText;
         if (apiClient) {
-            newDemoText = await apiClient.getResumableItems(this.props.storage.authCredentials.userid);
+            newDemoText = await apiClient.getResumableItems(this.props.storage.authCredentials.userId);
             newDemoText = await JSON.stringify(newDemoText);
         } else {
             newDemoText = "NOT CONNECTED";
@@ -42,7 +46,7 @@ function mapStateToProps(storage: Storage) {
             jellyfinInterface: storage.jellyfinInterface,
             authCredentials: storage.authCredentials
         }
-    };
+    } as JellyfinProps;
 }
 
 export default connect(mapStateToProps)(HomeComponent);

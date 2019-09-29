@@ -3,7 +3,7 @@ import { ActionType } from "../actions/ActionType";
 
 const initialState = {
     username: "",
-    userid: "",
+    userId: "",
     token: "",
     loginStatus: false
 };
@@ -12,7 +12,7 @@ export default function authReducer(state = initialState, action: JellyfinAction
     if (action.type === ActionType.LOGIN_SUCCESSFUL) {
         return Object.assign({}, state, {
             username: action.username,
-            userid: action.userid,
+            userId: action.userId,
             token: action.token,
             loginStatus: true
         });
