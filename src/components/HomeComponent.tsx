@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { connect } from "react-redux";
 
 import styles from "./Style";
-import { JellyfinProps } from "../Props";
+import { JellyfinProps, Storage } from "../Props";
 
 class HomeComponent extends Component<JellyfinProps> {
     state = {

@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ConnectAction from "../actions/ConnectAction";
 import EntryComponent from "../components/EntryComponent";
+import { JellyfinProps } from "../Props";
 
-class EntryScreen extends Component {
-    constructor(props, context) {
-        super(props, context);
+interface EntryScreenState {
+    server: string,
+    port: string
+}
+
+class EntryScreen extends Component<JellyfinProps, EntryScreenState> {
+    constructor(props: JellyfinProps) {
+        super(props);
         this.state = {
             server: "",
             port: ""
@@ -17,7 +23,7 @@ class EntryScreen extends Component {
         return <EntryComponent connectAction={this.connectAction} />;
     }
 
-    connectAction(state) {
+    connectAction(state: EntryScreenState) {
         this.props.dispatch(ConnectAction(state.server, state.port));
     }
 }

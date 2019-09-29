@@ -13,15 +13,12 @@
         "allowSyntheticDefaultImports": true,
         /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
         "esModuleInterop": true,
-        //TODO Fix the dom import for typescript
-        "skipLibCheck": true,
         "types": [
             "react",
             "jest"
         ],
         "lib": [
-            "esnext",
-            "dom"
+            "esnext"
         ],
         "typeRoots": [
             "./types",

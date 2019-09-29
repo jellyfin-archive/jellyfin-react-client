@@ -1,6 +1,5 @@
 import ApiClient from "jellyfin-apiclient/dist/apiclient";
 import jellyfinStore from "../utilities/storage/store";
-import * as types from "./ActionType";
 import { ActionType } from "./ActionType";
 
 export const connectToJellyfin = function(address: string) {

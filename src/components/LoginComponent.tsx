@@ -5,7 +5,7 @@ import { Button, Text, View, TextInput, StatusBar } from "react-native";
 import styles from "./Style";
 import { Redirect } from "../utilities/routing";
 import { loginToJellyfin } from "../actions/ApiFunctions";
-import { JellyfinProps } from "../Props";
+import { JellyfinProps, Storage } from "../Props";
 
 class LoginComponent extends Component<JellyfinProps> {
     state = {
