@@ -22,7 +22,7 @@ class EntryScreen extends Component {
     }
 }
 
-// auth and sample are the reducer keys defined in ../utilities/storage/store.js
+// auth and sample are the reducer keys defined in ../utilities/storage/store.ts
 function mapStateToProps({ connect }) {
     return { connect };
 }

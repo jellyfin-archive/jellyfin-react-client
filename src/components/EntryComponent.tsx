@@ -1,20 +1,29 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { View, TextInput, Button, Image } from "react-native";
 import styles from "./Style";
 import { Formik } from "formik";
 import { connect } from "react-redux";
 import { Redirect } from "../utilities/routing";
+import { ConnectionStatus, JellyfinProps } from "../Props";
 
-class EntryComponent extends Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            server: "",
-            port: "",
-            connectButtonMessage: "Connect",
+interface EntryComponentState {
+    server: string,
+    port: string,
+    connectButtonMessage?: string,
+    connectionStatus: ConnectionStatus
+}
+
+class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
+    state = {
+        server: "",
+        port: "",
+        connectButtonMessage: "Connect",
+        connectionStatus : {
+            serverAddress: "",
+            serverPort: "",
             connectStatus: false
-        };
-    }
+        }
+    };
 
     componentDidMount() {
         this.setState({
@@ -24,23 +33,28 @@ class EntryComponent extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.connectStatus !== this.props.connectionStatus.connectStatus)
+        if (this.state.connectionStatus.connectStatus !== this.props.connectionStatus.connectStatus)
             this.setState({
-                connectStatus: this.props.connectionStatus.connectStatus
+                connectionStatus: {
+                    serverAddress: this.props.connectionStatus.serverAddress,
+                    serverPort: this.props.connectionStatus.serverPort,
+                    connectStatus: this.props.connectionStatus.connectStatus
+                }
             });
     }
 
     render() {
-        return this.state.connectStatus ? (
+        return this.state.connectionStatus.connectStatus ? (
             <Redirect to="/login" />
         ) : (
             <View style={styles.container}>
                 <Image style={[styles.image]} source={require("./splash.jpg")} resizeMethod="resize" />
                 <Formik
+                    initialValues={{}}
                     onSubmit={() => {
                         this.props.connectAction(this.state);
                     }}
-                    render={({ handleSubmit }) => (
+                    render={props => (
                         <View>
                             <View style={styles.loginInput}>
                                 <View>
@@ -65,7 +79,7 @@ class EntryComponent extends Component {
                                 </View>
                             </View>
                             <View style={styles.loginInput}>
-                                <Button style={[styles.button]} title={this.state.connectButtonMessage} onPress={handleSubmit} />
+                                <Button title={this.state.connectButtonMessage} onPress={props.submitForm} />
                             </View>
                         </View>
                     )}
@@ -75,8 +89,8 @@ class EntryComponent extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return { connectionStatus: state.connectionStatus };
+function mapStateToProps(state: EntryComponentState) {
+    return { connectionStatus: state.connectionStatus } as JellyfinProps;
 }
 
 export default connect(mapStateToProps)(EntryComponent);

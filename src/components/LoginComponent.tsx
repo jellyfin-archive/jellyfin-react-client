@@ -5,20 +5,18 @@ import { Button, Text, View, TextInput, StatusBar } from "react-native";
 import styles from "./Style";
 import { Redirect } from "../utilities/routing";
 import { loginToJellyfin } from "../actions/ApiFunctions";
+import { JellyfinProps } from "../Props";
 
-class LoginComponent extends Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            message: "Login with your user credentials:",
-            usernameMessage: "Username: ",
-            passwordMessage: "Password: ",
-            username: this.props.storage.authCredentials.username,
-            password: "",
-            loginButtonMessage: "Login",
-            loginSuccess: false
-        };
-    }
+class LoginComponent extends Component<JellyfinProps, any> {
+    state = {
+        message: "Login with your user credentials:",
+        usernameMessage: "Username: ",
+        passwordMessage: "Password: ",
+        username: this.props.storage.authCredentials.username,
+        password: "",
+        loginButtonMessage: "Login",
+        loginSuccess: false
+    };
 
     componentDidUpdate() {
         let isloggedin = this.props.storage.jellyfinInterface.apiClient.isLoggedIn();
@@ -30,16 +28,17 @@ class LoginComponent extends Component {
     }
 
     calculateContent() {
-        if (!this.props.storage.jellyfinInterface.apiClient) return <Redirect to="/" />;
-        if (this.state.loginSuccess) return <Redirect to="/home" />;
+        if (!this.props.storage.jellyfinInterface.apiClient) return <Redirect to="/"/>;
+        if (this.state.loginSuccess) return <Redirect to="/home"/>;
         return (
             <View style={styles.container}>
-                <StatusBar hidden />
+                <StatusBar hidden/>
                 <Formik
+                    initialValues={{}}
                     onSubmit={() => {
                         loginToJellyfin(this.state.username, this.state.password);
                     }}
-                    render={({ handleSubmit }) => (
+                    render={(props) => (
                         <View>
                             <View style={styles.loginInput}>
                                 <Text style={[styles.biggerText]}>{this.state.message}</Text>
@@ -47,19 +46,20 @@ class LoginComponent extends Component {
                             <View style={styles.loginInput}>
                                 <Text style={styles.text}>{this.state.usernameMessage}</Text>
                                 <View>
-                                    <TextInput style={[styles.text, styles.inputBox]} onChangeText={username => this.setState({ username })} value={this.state.username} />
+                                    <TextInput style={[styles.text, styles.inputBox]} onChangeText={username => this.setState({ username })} value={this.state.username}/>
                                 </View>
                             </View>
 
                             <View style={styles.loginInput}>
                                 <Text style={styles.text}>{this.state.passwordMessage}</Text>
                                 <View>
-                                    <TextInput secureTextEntry={true} style={[styles.text, styles.inputBox]} onChangeText={password => this.setState({ password })} value={this.state.password} />
+                                    <TextInput secureTextEntry={true} style={[styles.text, styles.inputBox]} onChangeText={password => this.setState({ password })}
+                                               value={this.state.password}/>
                                 </View>
                             </View>
 
                             <View style={styles.loginInput}>
-                                <Button onPress={handleSubmit} title={this.state.loginButtonMessage} />
+                                <Button onPress={props.submitForm} title={this.state.loginButtonMessage}/>
                             </View>
                         </View>
                     )}
@@ -69,7 +69,7 @@ class LoginComponent extends Component {
     }
 }
 
-function mapStateToProps(storage) {
+function mapStateToProps(storage: any) {
     return { storage };
 }
 

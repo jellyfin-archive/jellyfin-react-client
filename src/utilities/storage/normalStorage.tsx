@@ -1,6 +1,6 @@
 import isElectron from "is-electron";
 
-let storage;
+let storage: any;
 // The only time IS_ELECTRON will be 1 is for the electron build.
 if (isElectron()) {
     const createElectronStore = require("electron-store-webpack-wrapper").default;

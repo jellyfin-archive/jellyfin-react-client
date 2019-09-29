@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        /* Basic Options */
+        "target": "ESNEXT",
+        /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+        "module": "commonjs",
+        /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+        "jsx": "react",
+        /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+        /* Strict Type-Checking Options */
+        "strict": true,
+        /* Enable all strict type-checking options. */
+        "allowSyntheticDefaultImports": true,
+        /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+        "esModuleInterop": true,
+        //TODO Fix the dom import for typescript
+        "skipLibCheck": true,
+        "types": [
+            "react",
+            "jest"
+        ],
+        "lib": [
+            "esnext",
+            "dom",
+            "node"
+        ],
+        "typeRoots": [
+            "./types",
+            "./node_modules/@types"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "typings"
+    ]
+}
