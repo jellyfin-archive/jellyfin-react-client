@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "../utilities/routing/index";
+import { Redirect } from "../utilities/routing";
 
 // Equivalent of a 404
 

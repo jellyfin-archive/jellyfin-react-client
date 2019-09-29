@@ -5,7 +5,7 @@ import EntryScreen from "./screens/EntryScreen";
 import NoMatch from "./components/NoMatch";
 import ElectronRedirect from "./components/ElectronRedirect";
 import jellyfinStore from "./utilities/storage/store";
-import { Router, Switch, Route } from "./utilities/routing/index";
+import { Router, Switch, Route } from "./utilities/routing";
 import { PersistGate } from "redux-persist/integration/react";
 import Loading from "./components/Loading";
 import HomeComponent from "./components/HomeComponent";

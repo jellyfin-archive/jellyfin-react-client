@@ -8,6 +8,8 @@ import sensitiveStorage from "./sensitiveStorage";
 import ConnectReducer from "../../reducers/connectReducer";
 import InterfaceReducer from "../../reducers/interfaceReducer";
 
+declare var window: any;
+
 const rootPersistConfig = {
     key: "root",
     storage: normalStorage
@@ -41,7 +43,7 @@ const rootReducer = combineReducers({
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose;
 
 const createJellyfinStore = () => {
     let store = createStore(persistedReducer, {}, composeEnhancers(applyMiddleware(thunk)));
