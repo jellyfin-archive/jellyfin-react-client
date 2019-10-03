@@ -2,7 +2,7 @@ import ApiClient from "jellyfin-apiclient/dist/apiclient";
 import jellyfinStore from "../utilities/storage/store";
 import { ActionType } from "./ActionType";
 
-export const connectToJellyfin = function(address: string) {
+export const connectToJellyfin = function (address: string) {
     const apiClient = new ApiClient(null, address, "Jellyfin WebNG", "0.0.1", "WebNG", "WebNG", "");
     jellyfinStore.store.dispatch({
         type: ActionType.UPDATE_APICLIENT,
@@ -10,7 +10,7 @@ export const connectToJellyfin = function(address: string) {
     });
 };
 
-export const loginToJellyfin = async function(username: string, password: string) {
+export const loginToJellyfin = async function (username: string, password: string) {
     const apiClient = copyClientFromStore();
     const auth = await apiClient.authenticateUserByName(username, password);
     jellyfinStore.store.dispatch(loginSuccessfully(auth.User.Name, auth.User.Id, auth.AccessToken));
@@ -21,17 +21,17 @@ export const loginToJellyfin = async function(username: string, password: string
     });
 };
 
-export const copyClientFromStore = function() {
+export const copyClientFromStore = function () {
     const apiClient = jellyfinStore.store.getState().jellyfinInterface.apiClient;
     return Object.assign(new ApiClient(null, "-", "Jellyfin WebNG", "0.0.1", "WebNG", "WebNG", ""), apiClient);
 };
 
 //Dispatch Action Helper:
-function loginSuccessfully(username: string, userid: string, token: string) {
+function loginSuccessfully(username: string, userId: string, token: string) {
     return {
         type: ActionType.LOGIN_SUCCESSFUL,
         username,
-        userid,
+        userId,
         token
     };
 }
