@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1570369196475" clover="3.2.0">
+  <project timestamp="1570369196475" name="All files">
+    <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="3" coveredelements="3" complexity="0" loc="2" ncloc="2" packages="1" files="1" classes="1"/>
+    <file name="Loading.tsx" path="/Users/mcneip01/source/jellyfin-source/jellyfin-react-client/src/components/Loading.tsx">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="16" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { connect } from "react-redux";
 import { Button, Text, View, TextInput, StatusBar } from "react-native";
 import styles from "./Style";
-import { Redirect } from "../utilities/routing";
+import { Redirect } from "react-router";
 import { loginToJellyfin } from "../actions/ApiFunctions";
 import { JellyfinProps, Storage } from "../Props";
 
