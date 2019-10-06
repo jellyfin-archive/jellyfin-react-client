@@ -1,7 +1,14 @@
 import { JellyfinAction } from "../Props";
 import { ActionType } from "../actions/ActionType";
 
-const initialState = {
+export interface AuthReducerState {
+    username: string,
+    userId: string,
+    token: string,
+    loginStatus: false
+}
+
+const initialState: AuthReducerState = {
     username: "",
     userId: "",
     token: "",
