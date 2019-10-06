@@ -113,6 +113,7 @@
         "postcss-safe-parser": "4.0.1",
         "react-native-typescript-transformer": "^1.2.13",
         "react-test-renderer": "16.6.3",
+        "redux-devtools-extension": "^2.13.8",
         "rnpm-plugin-windows": "0.2.8",
         "sass-loader": "7.1.0",
         "shx": "^0.3.2",
