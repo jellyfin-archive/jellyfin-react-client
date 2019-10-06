@@ -68,3 +68,4 @@ public/favicon*
 
 # TernJS
 */.tern-port
+coverage/
