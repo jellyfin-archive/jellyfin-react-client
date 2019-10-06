@@ -1,6 +1,7 @@
 import ApiClient from "jellyfin-apiclient/dist/apiclient";
 import jellyfinStore from "../utilities/storage/store";
 import { ActionType } from "./ActionType";
+import { JellyfinAction } from "../Props";
 
 export const connectToJellyfin = function (address: string) {
     const apiClient = new ApiClient(null, address, "Jellyfin WebNG", "0.0.1", "WebNG", "WebNG", "");
@@ -27,11 +28,12 @@ export const copyClientFromStore = function () {
 };
 
 //Dispatch Action Helper:
-function loginSuccessfully(username: string, userId: string, token: string) {
+function loginSuccessfully(username: string, userId: string, token: string): JellyfinAction {
     return {
         type: ActionType.LOGIN_SUCCESSFUL,
-        username,
-        userId,
-        token
+        username: username,
+        userId: userId,
+        token: token,
+        loginStatus: true
     };
 }
