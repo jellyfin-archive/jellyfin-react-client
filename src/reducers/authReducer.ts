@@ -5,7 +5,7 @@ export interface AuthReducerState {
     username: string,
     userId: string,
     token: string,
-    loginStatus: false
+    loginStatus: boolean
 }
 
 const initialState: AuthReducerState = {
