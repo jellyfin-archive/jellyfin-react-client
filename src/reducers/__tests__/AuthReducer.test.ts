@@ -1,4 +1,4 @@
-import authReducer from "../authReducer";
+import authReducer, { AuthReducerState } from "../authReducer";
 import { ActionType } from "../../actions/ActionType";
 import { JellyfinAction } from "../../Props";
 
@@ -14,7 +14,7 @@ describe("Auth reducer ", () => {
             port: "90",
             apiClient: undefined
         };
-        const ret = authReducer(undefined, jellyfinAction);
+        const ret: AuthReducerState = authReducer(undefined, jellyfinAction);
 
         expect(ret.username).toEqual("test");
         expect(ret.userId).toEqual("test");
@@ -24,7 +24,7 @@ describe("Auth reducer ", () => {
 
     it("returns initial state back on any other type", () => {
         const jellyfinAction: JellyfinAction = {
-            type: ActionType.LOGIN_FAILED,
+            type: ActionType.SOMETHING_HAPPENED_SUCCESSFULLY,
             username: "test",
             userId: "test",
             token: "n",
@@ -34,7 +34,7 @@ describe("Auth reducer ", () => {
             apiClient: undefined
         };
 
-        const ret = authReducer(undefined, jellyfinAction);
+        const ret: AuthReducerState = authReducer(undefined, jellyfinAction);
         expect(ret.username).toEqual("");
         expect(ret.userId).toEqual("");
         expect(ret.token).toEqual("");

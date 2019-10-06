@@ -42,7 +42,7 @@ describe("Connect reducer ", () => {
 
     it("returns initial state back on any other type", () => {
         const jellyfinAction: JellyfinAction = {
-            type: ActionType.LOGIN_FAILED,
+            type: ActionType.SOMETHING_HAPPENED_SUCCESSFULLY,
             username: "test",
             userId: "test",
             token: "n",
