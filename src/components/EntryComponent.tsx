@@ -9,7 +9,6 @@ import ConnectAction from "../actions/ConnectAction";
 
 export interface EntryComponentState {
     server: string,
-    port: string,
     connectButtonMessage: string,
     connectionStatus: ConnectionStatus
 }
@@ -19,11 +18,9 @@ class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
         super(props);
         this.state = {
             server: "",
-            port: "",
             connectButtonMessage: "Connect",
             connectionStatus : {
                 serverAddress: "",
-                serverPort: "",
                 connectStatus: false
             },
         };
@@ -32,7 +29,6 @@ class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
     componentDidMount() {
         this.setState({
             server: this.props.connectionStatus.serverAddress,
-            port: this.props.connectionStatus.serverPort
         });
     }
 
@@ -41,7 +37,6 @@ class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
             this.setState({
                 connectionStatus: {
                     serverAddress: this.props.connectionStatus.serverAddress,
-                    serverPort: this.props.connectionStatus.serverPort,
                     connectStatus: this.props.connectionStatus.connectStatus
                 }
             });
@@ -56,7 +51,7 @@ class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
                 <Formik
                     initialValues={{}}
                     onSubmit={() => {
-                        this.props.dispatch(ConnectAction(this.state.server, this.state.port));
+                        this.props.dispatch(ConnectAction(this.state.server));
                     }}
                     render={props => (
                         <View>
@@ -66,18 +61,7 @@ class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
                                         style={[styles.text, styles.inputBox]}
                                         onChangeText={server => this.setState({ server })}
                                         value={this.state.server}
-                                        placeholder="Server (eg http://localhost)"
-                                        placeholderTextColor="grey"
-                                    />
-                                </View>
-                            </View>
-                            <View style={styles.loginInput}>
-                                <View>
-                                    <TextInput
-                                        style={[styles.text, styles.inputBox]}
-                                        onChangeText={port => this.setState({ port })}
-                                        value={this.state.port}
-                                        placeholder="Port (eg 8096)"
+                                        placeholder="Server (eg. http://localhost:8096)"
                                         placeholderTextColor="grey"
                                     />
                                 </View>
