@@ -24,7 +24,6 @@ export interface Storage {
 }
 export interface ConnectionStatus {
     serverAddress: string,
-    serverPort: string,
     connectStatus: boolean
 }
 

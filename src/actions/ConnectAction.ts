@@ -2,11 +2,10 @@ import { connectToJellyfin } from "./ApiFunctions";
 import jellyfinStore from "../utilities/storage/store";
 import { ActionType } from "./ActionType";
 
-export default function connectToServer(serverAddress: string, port: string) {
+export default function connectToServer(serverAddress: string) {
     return (dispatch: any) => {
         let plainServerAddress = serverAddress;
         serverAddress = normalizeAddress(serverAddress);
-        serverAddress = serverAddress + ":" + port;
         connectToJellyfin(serverAddress);
         try {
             //TODO No any anywhere
@@ -15,14 +14,14 @@ export default function connectToServer(serverAddress: string, port: string) {
                 apiClient.getPublicSystemInfo().then((result: any) => {
                     console.log("Connected");
                     console.log(result);
-                    return dispatch(connectSuccessful(plainServerAddress, port));
+                    return dispatch(connectSuccessful(plainServerAddress));
                 });
             } else {
                 throw new Error("API Client is undefined");
             }
         } catch (err) {
             console.log("Unable to connect.");
-            return dispatch(connectFailed(plainServerAddress, port));
+            return dispatch(connectFailed(plainServerAddress));
         }
     };
 }
@@ -47,18 +46,16 @@ function normalizeAddress(serverAddress: string) {
     return serverAddress;
 }
 
-function connectSuccessful(address: string, port: string) {
+function connectSuccessful(address: string) {
     return {
         type: ActionType.CONNECT_SUCCESSFUL,
-        address,
-        port
+        address
     };
 }
 
-function connectFailed(address: string, port: string) {
+function connectFailed(address: string) {
     return {
         type: ActionType.CONNECT_FAILED,
-        address,
-        port
+        address
     };
 }
