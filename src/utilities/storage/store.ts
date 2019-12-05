@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import { Persistor } from "redux-persist/es/types";
 import { Store } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from "redux-thunk";
 import normalStorage from "./normalStorage";
 import hardSet from "redux-persist/lib/stateReconciler/hardSet";
@@ -9,10 +10,6 @@ import AuthReducer from "../../reducers/authReducer";
 import sensitiveStorage from "./sensitiveStorage";
 import ConnectReducer from "../../reducers/connectReducer";
 import InterfaceReducer from "../../reducers/interfaceReducer";
-
-declare global {
-    interface Window { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: Function }
-}
 
 const rootPersistConfig = {
     key: "root",
@@ -47,10 +44,9 @@ const rootReducer = combineReducers({
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose;
 
 const createJellyfinStore = (): { store: Store; persistor: Persistor } => {
-    const store = createStore(persistedReducer, {}, composeEnhancers(applyMiddleware(thunk)));
+    const store = createStore(persistedReducer, {}, composeWithDevTools(compose(applyMiddleware(thunk))));
     const persistor = persistStore(store);
     return { store, persistor };
 };
