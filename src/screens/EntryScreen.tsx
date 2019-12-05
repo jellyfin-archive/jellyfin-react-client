@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import EntryComponent from "../components/EntryComponent";
 
-const EntryScreen: ReactNode = () => {
+const EntryScreen: React.SFC = () => {
     return <EntryComponent />;
 };
 
