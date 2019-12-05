@@ -1,6 +1,10 @@
-import isElectron from "is-electron";
+/* eslint-disable @typescript-eslint/no-var-requires */
 
-let storage: any;
+import isElectron from "is-electron";
+import Storage from 'redux-persist/es/storage'
+
+let storage: Storage;
+
 // The only time IS_ELECTRON will be 1 is for the electron build.
 if (isElectron()) {
     const createElectronStore = require("electron-store-webpack-wrapper").default;

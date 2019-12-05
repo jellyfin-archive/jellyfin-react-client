@@ -19,7 +19,7 @@
         "install": "node scripts/install.js",
         "ios": "react-native run-ios",
         "ios:release": "react-native bundle --platform=ios",
-        "lint": "node node_modules/eslint/bin/eslint.js src",
+        "lint": "node node_modules/eslint/bin/eslint.js 'src/**/*.{js,ts,tsx}'",
         "preandroid": "scripts/preandroid.sh",
         "preelectron": "cross-env-shell ELECTRON=1 PUBLIC_URL=. \"yarn run web:release && shx cp index.electron.js build/index.js && echo {} > build/package.json\"",
         "preelectron:release": "yarn run preelectron",

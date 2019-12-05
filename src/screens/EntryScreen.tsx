@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
-import EntryComponent, { EntryComponentState } from "../components/EntryComponent";
+import EntryComponent from "../components/EntryComponent";
 import { JellyfinProps } from "../Props";
 
 
@@ -9,7 +9,7 @@ class EntryScreen extends Component<JellyfinProps> {
         super(props);
     }
 
-    render() {
+    render(): ReactNode {
         return <EntryComponent/>;
     }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, ReactNode } from "react";
 import { View, Text } from "react-native";
 import { connect } from "react-redux";
 
@@ -6,7 +6,7 @@ import styles from "./Style";
 import { JellyfinProps, Storage } from "../Props";
 
 interface HomeComponentState {
-    demoText: string
+    demoText: string;
 }
 
 class HomeComponent extends Component<JellyfinProps, HomeComponentState> {
@@ -26,7 +26,7 @@ class HomeComponent extends Component<JellyfinProps, HomeComponentState> {
         this.setState({ demoText: newDemoText });
     }
 
-    render() {
+    render(): ReactNode {
         return (
             <View style={styles.container}>
                 <Text style={[styles.biggerText]}>

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, ReactNode } from "react";
 import { View, TextInput, Button, Image } from "react-native";
 import styles from "./Style";
 import { Formik } from "formik";
@@ -8,9 +8,9 @@ import { ConnectionStatus, JellyfinProps } from "../Props";
 import ConnectAction from "../actions/ConnectAction";
 
 export interface EntryComponentState {
-    server: string,
-    connectButtonMessage: string,
-    connectionStatus: ConnectionStatus
+    server: string;
+    connectButtonMessage: string;
+    connectionStatus: ConnectionStatus;
 }
 
 class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
@@ -42,7 +42,7 @@ class EntryComponent extends PureComponent<JellyfinProps, EntryComponentState> {
             });
     }
 
-    render() {
+    render(): ReactNode {
         return this.state.connectionStatus.connectStatus ? (
             <Redirect to="/login" />
         ) : (
