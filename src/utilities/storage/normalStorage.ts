@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 import isElectron from "is-electron";
-import Storage from 'redux-persist/es/storage'
+import { Storage } from "redux-persist/es/types"
 
 let storage: Storage;
 
