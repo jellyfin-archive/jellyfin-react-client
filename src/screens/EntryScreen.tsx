@@ -1,22 +1,8 @@
-import React, { Component, ReactNode } from "react";
-import { connect } from "react-redux";
+import React, { ReactNode } from "react";
 import EntryComponent from "../components/EntryComponent";
-import { JellyfinProps } from "../Props";
 
+const EntryScreen: ReactNode = () => {
+    return <EntryComponent />;
+};
 
-class EntryScreen extends Component<JellyfinProps> {
-    constructor(props: JellyfinProps) {
-        super(props);
-    }
-
-    render(): ReactNode {
-        return <EntryComponent/>;
-    }
-}
-
-// auth and sample are the reducer keys defined in ../utilities/storage/store.ts
-function mapStateToProps(state: any) {
-    return state;
-}
-
-export default connect(mapStateToProps)(EntryScreen);
+export default EntryScreen;
