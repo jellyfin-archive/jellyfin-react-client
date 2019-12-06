@@ -10,6 +10,8 @@ declare class ApiClient {
   )
 
   getPublicSystemInfo: () => Promise<any>
+  getResumableItems: (userId: string) => Promise<any>
+  isLoggedIn: () => Boolean
 }
 
 declare module "jellyfin-apiclient/dist/apiclient" {
