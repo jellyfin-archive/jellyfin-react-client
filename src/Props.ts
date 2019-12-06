@@ -30,7 +30,7 @@ export interface ConnectionStatus {
 
 export interface JellyfinProps {
     connectionStatus: ConnectionStatus;
-    connectAction: (state: any) => void;
+    connectAction: (state: any) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
     storage: Storage;
     dispatch: (dispatch: Dispatch<AnyAction>) => void;
 }

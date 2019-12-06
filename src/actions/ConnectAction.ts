@@ -38,7 +38,7 @@ function normalizeAddress(serverAddress: string) {
 }
 
 export default function connectToServer(serverAddress: string) {
-    return (dispatch: any) => {
+    return (dispatch: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
         const plainServerAddress = serverAddress;
         serverAddress = normalizeAddress(serverAddress);
         connectToJellyfin(serverAddress);
