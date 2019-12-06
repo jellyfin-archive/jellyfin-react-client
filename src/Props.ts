@@ -1,6 +1,7 @@
 // Contains the definition for the props used in Jellyfin
 import { ActionType } from "./actions/ActionType";
 import { AnyAction, Dispatch } from "redux";
+import ApiClient from 'jellyfin-apiclient/dist/apiclient';
 
 export interface JellyfinAction {
     type: ActionType;
@@ -10,12 +11,12 @@ export interface JellyfinAction {
     loginStatus: boolean;
     address: string;
     port: string;
-    apiClient: any;
+    apiClient: ApiClient;
 }
 
 export interface Storage {
     jellyfinInterface: {
-        apiClient: any;
+        apiClient: ApiClient;
     };
     authCredentials: {
         userId: string;
