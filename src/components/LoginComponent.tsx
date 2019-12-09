@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, ReactNode } from "react";
 import { Formik } from "formik";
 import { connect } from "react-redux";
 import { Button, Text, View, TextInput, StatusBar } from "react-native";
@@ -23,7 +23,7 @@ class LoginComponent extends Component<JellyfinProps> {
         if (this.state.loginSuccess !== isLoggedIn) this.setState({ loginSuccess: isLoggedIn });
     }
 
-    render() {
+    render(): ReactNode {
         return this.calculateContent();
     }
 

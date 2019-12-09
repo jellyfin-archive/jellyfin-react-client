@@ -1,28 +1,19 @@
 import { connectToJellyfin } from "./ApiFunctions";
 import jellyfinStore from "../utilities/storage/store";
 import { ActionType } from "./ActionType";
+import ApiClient from 'jellyfin-apiclient/dist/apiclient';
 
-export default function connectToServer(serverAddress: string) {
-    return (dispatch: any) => {
-        let plainServerAddress = serverAddress;
-        serverAddress = normalizeAddress(serverAddress);
-        connectToJellyfin(serverAddress);
-        try {
-            //TODO No any anywhere
-            const apiClient: any = jellyfinStore.store.getState().jellyfinInterface.apiClient;
-            if(apiClient) {
-                apiClient.getPublicSystemInfo().then((result: any) => {
-                    console.log("Connected");
-                    console.log(result);
-                    return dispatch(connectSuccessful(plainServerAddress));
-                });
-            } else {
-                throw new Error("API Client is undefined");
-            }
-        } catch (err) {
-            console.log("Unable to connect.");
-            return dispatch(connectFailed(plainServerAddress));
-        }
+function connectSuccessful(address: string) {
+    return {
+        type: ActionType.CONNECT_SUCCESSFUL,
+        address
+    };
+}
+
+function connectFailed(address: string) {
+    return {
+        type: ActionType.CONNECT_FAILED,
+        address
     };
 }
 
@@ -46,16 +37,22 @@ function normalizeAddress(serverAddress: string) {
     return serverAddress;
 }
 
-function connectSuccessful(address: string) {
-    return {
-        type: ActionType.CONNECT_SUCCESSFUL,
-        address
-    };
-}
-
-function connectFailed(address: string) {
-    return {
-        type: ActionType.CONNECT_FAILED,
-        address
+export default function connectToServer(serverAddress: string) {
+    return (dispatch: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+        const plainServerAddress = serverAddress;
+        serverAddress = normalizeAddress(serverAddress);
+        connectToJellyfin(serverAddress);
+        try {
+            const apiClient: ApiClient = jellyfinStore.store.getState().jellyfinInterface.apiClient;
+            if(apiClient) {
+                apiClient.getPublicSystemInfo().then(() => {
+                    return dispatch(connectSuccessful(plainServerAddress));
+                });
+            } else {
+                throw new Error("API Client is undefined");
+            }
+        } catch (err) {
+            return dispatch(connectFailed(plainServerAddress));
+        }
     };
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Provider } from "react-redux";
 
 import EntryScreen from "./screens/EntryScreen";
@@ -12,7 +12,7 @@ import HomeComponent from "./components/HomeComponent";
 import LoginComponent from "./components/LoginComponent";
 
 class App extends React.Component {
-    render() {
+    render(): ReactNode {
         return (
             <Provider store={jellyfinStore.store}>
                 <PersistGate loading={<Loading />} persistor={jellyfinStore.persistor}>
