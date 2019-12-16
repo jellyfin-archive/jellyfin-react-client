@@ -22,6 +22,8 @@ export interface Storage {
         userId: string;
         username: string;
     };
+    connectionStatus: ConnectionStatus;
+    
 }
 export interface ConnectionStatus {
     serverAddress: string;

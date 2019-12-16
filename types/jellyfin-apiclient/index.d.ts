@@ -11,9 +11,12 @@ declare class ApiClient {
 
   getPublicSystemInfo: () => Promise<any>
   getResumableItems: (userId: string) => Promise<any>
-  isLoggedIn: () => Boolean
+  authenticateUserByName: (username: string, password: string) => Promise<any>
+  setAuthenticationInfo: (accessToken: string, id: string) => void
+  isLoggedIn: () => boolean
 }
 
 declare module "jellyfin-apiclient/dist/apiclient" {
   export = ApiClient
+
 }
