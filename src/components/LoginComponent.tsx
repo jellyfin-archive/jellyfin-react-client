@@ -6,6 +6,7 @@ import styles from "./Style";
 import { Redirect } from "../utilities/routing";
 import { loginToJellyfin } from "../actions/ApiFunctions";
 import { JellyfinProps, Storage } from "../Props";
+import { getApiClient } from '../utilities/api-client';
 
 class LoginComponent extends Component<JellyfinProps> {
     state = {
@@ -19,7 +20,7 @@ class LoginComponent extends Component<JellyfinProps> {
     };
 
     componentDidUpdate() {
-        const isLoggedIn = this.props.storage.jellyfinInterface.apiClient.isLoggedIn();
+        const isLoggedIn = getApiClient().isLoggedIn();
         if (this.state.loginSuccess !== isLoggedIn) this.setState({ loginSuccess: isLoggedIn });
     }
 
@@ -28,8 +29,8 @@ class LoginComponent extends Component<JellyfinProps> {
     }
 
     calculateContent() {
-        if (!this.props.storage.jellyfinInterface.apiClient) return <Redirect to="/"/>;
         if (this.state.loginSuccess) return <Redirect to="/home"/>;
+        
         return (
             <View style={styles.container}>
                 <StatusBar hidden/>

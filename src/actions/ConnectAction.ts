@@ -1,7 +1,7 @@
 import { connectToJellyfin } from "./ApiFunctions";
-import jellyfinStore from "../utilities/storage/store";
 import { ActionType } from "./ActionType";
 import ApiClient from 'jellyfin-apiclient/dist/apiclient';
+import { getApiClient } from '../utilities/api-client';
 
 function connectSuccessful(address: string) {
     return {
@@ -38,19 +38,14 @@ function normalizeAddress(serverAddress: string) {
 }
 
 export default function connectToServer(serverAddress: string) {
-    return (dispatch: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+    return async (dispatch: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
         const plainServerAddress = serverAddress;
         serverAddress = normalizeAddress(serverAddress);
         connectToJellyfin(serverAddress);
         try {
-            const apiClient: ApiClient = jellyfinStore.store.getState().jellyfinInterface.apiClient;
-            if(apiClient) {
-                apiClient.getPublicSystemInfo().then(() => {
-                    return dispatch(connectSuccessful(plainServerAddress));
-                });
-            } else {
-                throw new Error("API Client is undefined");
-            }
+            const apiClient: ApiClient = getApiClient()
+            await apiClient.getPublicSystemInfo()
+            return dispatch(connectSuccessful(plainServerAddress));
         } catch (err) {
             return dispatch(connectFailed(plainServerAddress));
         }

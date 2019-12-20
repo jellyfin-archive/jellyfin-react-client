@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import styles from "./Style";
 import { JellyfinProps, Storage } from "../Props";
+import { getApiClient } from '../utilities/api-client';
 
 interface HomeComponentState {
     demoText: string;
@@ -15,7 +16,7 @@ class HomeComponent extends Component<JellyfinProps, HomeComponentState> {
     };
 
     async componentDidMount() {
-        const apiClient = this.props.storage.jellyfinInterface.apiClient;
+        const apiClient = getApiClient();
         let newDemoText;
         if (apiClient) {
             newDemoText = await apiClient.getResumableItems(this.props.storage.authCredentials.userId);
