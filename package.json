@@ -32,6 +32,7 @@
         "windows:release": "react-native bundle --platform=windows --entry-file index.js --assets-dest windows/jellyfinclient/ReactAssets --bundle-output windows/jellyfinclient/ReactAssets/index.windows.bundle --dev false"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^1.1.0",
         "@types/react-router-native": "^5.1.0",
         "electron-store": "^2.0.0",
         "electron-store-webpack-wrapper": "^0.0.2",
