@@ -1,28 +1,17 @@
 import { connectToJellyfin } from "./ApiFunctions";
-import { ActionType } from "./ActionType";
 import ApiClient from 'jellyfin-apiclient/dist/apiclient';
 import { getApiClient } from '../utilities/api-client';
+import { connectSuccessful, connectFailed } from "../reducers/connectReducer";
+import { ThunkAction } from "redux-thunk";
+import { RootState } from "../utilities/storage/store";
+import { Action } from "redux";
 
-function connectSuccessful(address: string) {
-    return {
-        type: ActionType.CONNECT_SUCCESSFUL,
-        address
-    };
-}
-
-function connectFailed(address: string) {
-    return {
-        type: ActionType.CONNECT_FAILED,
-        address
-    };
-}
-
-function replaceAll(originalString: string, strReplace: string, strWith: string) {
+function replaceAll(originalString: string, strReplace: string, strWith: string): string {
     const reg = new RegExp(strReplace, "ig");
     return originalString.replace(reg, strWith);
 }
 
-function normalizeAddress(serverAddress: string) {
+function normalizeAddress(serverAddress: string): string {
     // attempt to correct bad input
     serverAddress = serverAddress.trim();
 
@@ -37,17 +26,19 @@ function normalizeAddress(serverAddress: string) {
     return serverAddress;
 }
 
-export default function connectToServer(serverAddress: string) {
-    return async (dispatch: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+export default function connectToServer(
+    serverAddress: string
+): ThunkAction<void, RootState, null, Action<string>> {
+    return async (dispatch): Promise<void>  => {
         const plainServerAddress = serverAddress;
         serverAddress = normalizeAddress(serverAddress);
         connectToJellyfin(serverAddress);
         try {
             const apiClient: ApiClient = getApiClient()
             await apiClient.getPublicSystemInfo()
-            return dispatch(connectSuccessful(plainServerAddress));
+            dispatch(connectSuccessful({ serverAddress: plainServerAddress }));
         } catch (err) {
-            return dispatch(connectFailed(plainServerAddress));
+            dispatch(connectFailed({ serverAddress: plainServerAddress }));
         }
     };
 }

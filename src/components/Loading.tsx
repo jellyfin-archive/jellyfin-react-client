@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
 export default class Loading extends Component {
     render(): ReactNode {
         return (
-            <View style={[styles.container, styles.horizontal]}>
-                <ActivityIndicator size="large" color="#0000ff" />
-            </View>
+          <View style={[styles.container, styles.horizontal]}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
         );
     }
 }

@@ -4,6 +4,8 @@ module.exports = {
         "es6": true
     },
     "extends": [
+        "standard",
+        "standard-jsx",
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
