@@ -1,53 +1,47 @@
-import React, { Component, ReactNode } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
-import { connect } from "react-redux";
 
 import styles from "./Style";
-import { JellyfinProps, Storage } from "../Props";
 import { getApiClient } from '../utilities/api-client';
+import { useSelector } from "../utilities/storage/store";
+
+interface HomeComponentProps {
+    userId: string;
+}
 
 interface HomeComponentState {
     demoText: string;
 }
 
-class HomeComponent extends Component<JellyfinProps, HomeComponentState> {
-    state = {
-        demoText: ""
-    };
+const HomeComponent: React.FC = () => {
 
-    async componentDidMount() {
-        const apiClient = getApiClient();
-        let newDemoText;
-        if (apiClient) {
-            newDemoText = await apiClient.getResumableItems(this.props.storage.authCredentials.userId);
-            newDemoText = await JSON.stringify(newDemoText);
-        } else {
-            newDemoText = "NOT CONNECTED";
-        }
-        this.setState({ demoText: newDemoText });
-    }
+    const userId = useSelector(state => state.authCredentials.userId)
+    const [demoText, setDemoText] = useState('')
 
-    render(): ReactNode {
+    useEffect(() => {
+        (async () => {
+            const apiClient = getApiClient();
+            let newDemoText;
+            try {
+                newDemoText = await apiClient.getResumableItems(userId);
+                newDemoText = JSON.stringify(newDemoText);
+            } catch {
+                newDemoText = "NOT CONNECTED";
+            }
+            setDemoText(newDemoText);
+        })();
+    }, [userId])
+
         return (
-            <View style={styles.container}>
-                <Text style={[styles.biggerText]}>
+          <View style={styles.container}>
+            <Text style={[styles.biggerText]}>
                     DEMO-STRING (your resumable items):
-                    {"\n"}
-                    {"\n"}
-                    {this.state.demoText}
-                </Text>
-            </View>
+              {"\n"}
+              {"\n"}
+              {demoText}
+            </Text>
+          </View>
         );
-    }
 }
 
-function mapStateToProps(storage: Storage) {
-    return {
-        storage: {
-            jellyfinInterface: storage.jellyfinInterface,
-            authCredentials: storage.authCredentials
-        }
-    } as JellyfinProps;
-}
-
-export default connect(mapStateToProps)(HomeComponent);
+export default HomeComponent;

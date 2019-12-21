@@ -1,5 +1,4 @@
-import { JellyfinAction } from "../Props";
-import { ActionType } from "../actions/ActionType";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
     username: "",
@@ -8,15 +7,33 @@ const initialState = {
     loginStatus: false
 };
 
-export default function authReducer(state = initialState, action: JellyfinAction) {
-    if (action.type === ActionType.LOGIN_SUCCESSFUL) {
-        return Object.assign({}, state, {
-            username: action.username,
-            userId: action.userId,
-            token: action.token,
-            loginStatus: true
-        });
-    } else {
-        return state;
+interface LoginSuccessData {
+    username: string;
+    userId: string;
+    token: string;
+}
+
+const { reducer, actions } = createSlice({
+    name: 'authCredentials',
+    initialState,
+    reducers: {
+        loginSuccessful: (state, action: PayloadAction<LoginSuccessData>) => {
+            const { username, userId, token } = action.payload
+            return {
+                username,
+                userId,
+                token,
+                loginStatus: true
+            }
+        }
     }
+})
+
+export type AuthState = ReturnType<typeof reducer>
+
+const { loginSuccessful } = actions
+
+export {
+    reducer as authReducer,
+    loginSuccessful
 }
