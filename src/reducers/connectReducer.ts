@@ -1,24 +1,38 @@
-import { ActionType } from "../actions/ActionType";
-import { JellyfinAction } from "../Props";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
     serverAddress: "",
     connectStatus: false
 };
 
-export default function connectReducer(state = initialState, action: JellyfinAction) {
-    switch (action.type) {
-        case ActionType.CONNECT_SUCCESSFUL:
-            return Object.assign({}, state, {
-                serverAddress: action.address,
+interface ConnectData {
+    serverAddress: string;
+}
+
+const { reducer, actions } = createSlice({
+    name: 'auth',
+    initialState,
+    reducers: {
+        connectSuccessful: (state, action: PayloadAction<ConnectData>) => {
+            return {
+                serverAddress: action.payload.serverAddress,
                 connectStatus: true
-            });
-        case ActionType.CONNECT_FAILED:
-            return Object.assign({}, state, {
-                serverAddress: action.address,
+            }
+        },
+        connectFailed: (state, action: PayloadAction<ConnectData>) => {
+            return {
+                serverAddress: action.payload.serverAddress,
                 connectStatus: false
-            });
-        default:
-            return state;
+            }
+        }
     }
+})
+
+const { connectSuccessful, connectFailed } = actions
+export type ConnectState = ReturnType<typeof reducer>
+
+export {
+    reducer as connectReducer,
+    connectSuccessful,
+    connectFailed
 }

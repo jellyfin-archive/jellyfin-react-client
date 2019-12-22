@@ -1,82 +1,68 @@
-import React, { Component, ReactNode } from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
-import { connect } from "react-redux";
 import { Button, Text, View, TextInput, StatusBar } from "react-native";
 import styles from "./Style";
 import { Redirect } from "../utilities/routing";
-import { loginToJellyfin } from "../actions/ApiFunctions";
-import { JellyfinProps, Storage } from "../Props";
-import { getApiClient } from '../utilities/api-client';
+import loginToJellyfin from "../actions/ApiFunctions";
+import { useSelector } from "../utilities/storage/store";
+import { useDispatch } from "react-redux";
 
-class LoginComponent extends Component<JellyfinProps> {
-    state = {
-        message: "Login with your user credentials:",
-        usernameMessage: "Username: ",
-        passwordMessage: "Password: ",
-        username: this.props.storage.authCredentials.username,
-        password: "",
-        loginButtonMessage: "Login",
-        loginSuccess: false
-    };
+const LoginComponent: React.FC = () => {
+  const dispatch = useDispatch()
 
-    componentDidUpdate() {
-        const isLoggedIn = getApiClient().isLoggedIn();
-        if (this.state.loginSuccess !== isLoggedIn) this.setState({ loginSuccess: isLoggedIn });
-    }
+  const persistedUsername = useSelector(state => state.authCredentials.username)
+  const isLoggedIn = useSelector(state => state.authCredentials.loginStatus)
 
-    render(): ReactNode {
-        return this.calculateContent();
-    }
+  const [username, setUsername] = useState(persistedUsername)
+  const [password, setPassword] = useState('')
 
-    calculateContent() {
-        if (this.state.loginSuccess) return <Redirect to="/home"/>;
-        
-        return (
-            <View style={styles.container}>
-                <StatusBar hidden/>
-                <Formik
-                    initialValues={{}}
-                    onSubmit={() => {
-                        loginToJellyfin(this.state.username, this.state.password);
-                    }}
-                    render={(props) => (
-                        <View>
-                            <View style={styles.loginInput}>
-                                <Text style={[styles.biggerText]}>{this.state.message}</Text>
-                            </View>
-                            <View style={styles.loginInput}>
-                                <Text style={styles.text}>{this.state.usernameMessage}</Text>
-                                <View>
-                                    <TextInput style={[styles.text, styles.inputBox]} onChangeText={username => this.setState({ username })} value={this.state.username}/>
-                                </View>
-                            </View>
+  if (isLoggedIn) return <Redirect to="/home" />;
 
-                            <View style={styles.loginInput}>
-                                <Text style={styles.text}>{this.state.passwordMessage}</Text>
-                                <View>
-                                    <TextInput secureTextEntry={true} style={[styles.text, styles.inputBox]} onChangeText={password => this.setState({ password })}
-                                               value={this.state.password}/>
-                                </View>
-                            </View>
-
-                            <View style={styles.loginInput}>
-                                <Button onPress={props.submitForm} title={this.state.loginButtonMessage}/>
-                            </View>
-                        </View>
-                    )}
-                />
+  return (
+    <View style={styles.container}>
+      <StatusBar hidden />
+      <Formik
+        initialValues={{}}
+        onSubmit={() => {
+                  dispatch(loginToJellyfin(username, password));
+        }}
+        render={({ submitForm: handleSubmit }) => (
+          <View>
+            <View style={styles.loginInput}>
+              <Text style={[styles.biggerText]}>Login with your user credentials:</Text>
             </View>
-        );
-    }
+            <View style={styles.loginInput}>
+              <Text style={styles.text}>Username:</Text>
+              <View>
+                <TextInput
+                  style={[styles.text, styles.inputBox]} 
+                  onChangeText={username => setUsername(username)} 
+                  value={username}
+                />
+              </View>
+            </View>
+
+            <View style={styles.loginInput}>
+              <Text style={styles.text}>Password:</Text>
+              <View>
+                <TextInput
+                  secureTextEntry 
+                  style={[styles.text, styles.inputBox]} 
+                  onChangeText={password => setPassword(password)}
+                  value={password}
+                />
+              </View>
+            </View>
+
+            <View style={styles.loginInput}>
+              <Button onPress={handleSubmit} title='Login' />
+            </View>
+          </View>
+        )}
+      />
+    </View>
+  );
 }
 
-function mapStateToProps(storage: Storage) {
-    return {
-        storage: {
-            jellyfinInterface: storage.jellyfinInterface,
-            authCredentials: storage.authCredentials
-        }
-    } as JellyfinProps;
-}
 
-export default connect(mapStateToProps)(LoginComponent);
+export default LoginComponent;
