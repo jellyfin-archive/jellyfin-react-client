@@ -12,7 +12,7 @@ const EntryComponent: React.FC = () => {
     const dispatch = useDispatch()
     const connectionStatus = useSelector(state => state.connectionStatus)
 
-    const [server, setServer] = useState(connectionStatus.serverAddress)
+    const [server, setServer] = useState(connectionStatus.serverAddress || '')
 
     const handleSubmit = useCallback(() => {
         dispatch(connectToServer(server));

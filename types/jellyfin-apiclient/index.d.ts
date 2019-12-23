@@ -1,7 +1,7 @@
 declare class ApiClient {
   constructor(
     storage: null,
-    address: string,
+    address: null | string,
     name: string,
     version: string,
     foo: string,
@@ -12,7 +12,7 @@ declare class ApiClient {
   getPublicSystemInfo: () => Promise<any>
   getResumableItems: (userId: string) => Promise<any>
   authenticateUserByName: (username: string, password: string) => Promise<any>
-  setAuthenticationInfo: (accessToken: string, id: string) => void
+  setAuthenticationInfo: (accessToken?: string, userId?: string) => void
   isLoggedIn: () => boolean
 }
 

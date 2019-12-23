@@ -6,12 +6,13 @@ import { Redirect } from "../utilities/routing";
 import loginToJellyfin from "../actions/ApiFunctions";
 import { useSelector } from "../utilities/storage/store";
 import { useDispatch } from "react-redux";
+import { getIsUserAuthenticated } from "../reducers/authCredentials";
 
 const LoginComponent: React.FC = () => {
   const dispatch = useDispatch()
 
   const persistedUsername = useSelector(state => state.authCredentials.username)
-  const isLoggedIn = useSelector(state => state.authCredentials.loginStatus)
+  const isLoggedIn = useSelector(getIsUserAuthenticated)
 
   const [username, setUsername] = useState(persistedUsername)
   const [password, setPassword] = useState('')

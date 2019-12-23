@@ -1,30 +1,37 @@
-import ApiClient from "jellyfin-apiclient/dist/apiclient";
 import { RootState } from "../utilities/storage/store";
-import { getApiClient, setApiClient } from "../utilities/api-client";
-import { loginSuccessful } from "../reducers/authReducer";
+import { getApiClient } from "../utilities/api-client";
+import { loginSuccessful } from "../reducers/authCredentials";
 import { ThunkAction } from "redux-thunk";
 import { Action } from "redux";
+import connectToServer from './ConnectAction';
+import { apiInitialized } from "../reducers/connectionStatus";
 
 /**
- * Create an API client for a Jellyfin backend.
- * @param address - Address of the Jellyfin backend.
+ * Initialize the API client when the application loads, intended to be called when the store is re-hydrated.
  */
-export const connectToJellyfin = function (address: string): void {
-    setApiClient(new ApiClient(null, address, "Jellyfin WebNG", "0.0.1", "WebNG", "WebNG", ""));
-};
+export function initApiClient(): ThunkAction<void, RootState, null, Action<string>> {
+    return async (dispatch, getState) => {
+        const {
+            authCredentials: { token, username, userId },
+            connectionStatus: { serverAddress }
+        } = getState()
 
-/**
- * Initialize the API client when the application loads, intended to be used with the persisted
- * server and authentication data in Redux.
- */
-export const initApiClient = (
-    serverAddress: string,
-    token: string,
-    userId: string
-): void => {
-    connectToJellyfin(serverAddress)
-    if (token && userId) {
-        getApiClient().setAuthenticationInfo(token, userId);
+        if (serverAddress !== null) {
+            const connected = await dispatch(connectToServer(serverAddress))
+
+            // Authenticate with the stored token if we can
+            if (connected && token && userId) {
+                getApiClient().setAuthenticationInfo(token, userId);
+                try {
+                    await getApiClient().getResumableItems(userId)
+                    dispatch(loginSuccessful({ username, userId, token }))
+                } catch {
+                    getApiClient().setAuthenticationInfo(undefined, undefined)
+                }
+            }
+        }
+
+        dispatch(apiInitialized())
     }
 }
 
@@ -46,5 +53,5 @@ export default function loginToJellyfin(
                 token: auth.AccessToken
             })
         );
-   }
+    }
 }
