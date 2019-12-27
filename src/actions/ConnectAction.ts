@@ -1,7 +1,6 @@
-import { connectToJellyfin } from "./ApiFunctions";
 import ApiClient from 'jellyfin-apiclient/dist/apiclient';
-import { getApiClient } from '../utilities/api-client';
-import { connectSuccessful, connectFailed } from "../reducers/connectReducer";
+import { getApiClient, setApiClient } from '../utilities/api-client';
+import { connectSuccessful, connectFailed } from "../reducers/connectionStatus";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../utilities/storage/store";
 import { Action } from "redux";
@@ -26,19 +25,27 @@ function normalizeAddress(serverAddress: string): string {
     return serverAddress;
 }
 
+/**
+ * Connect to Jellyfin given a server address. A request to a public endpoint is attempted
+ * to verify connection.
+ * 
+ * @param serverAddress The server address to connect to
+ * @returns true if connection success, false otherwise 
+ */
 export default function connectToServer(
     serverAddress: string
-): ThunkAction<void, RootState, null, Action<string>> {
-    return async (dispatch): Promise<void>  => {
-        const plainServerAddress = serverAddress;
-        serverAddress = normalizeAddress(serverAddress);
-        connectToJellyfin(serverAddress);
+): ThunkAction<Promise<boolean>, RootState, null, Action<string>> {
+    return async (dispatch) => {
+        const normalizedAddress = normalizeAddress(serverAddress);
+        setApiClient(new ApiClient(null, normalizedAddress || '-', "Jellyfin WebNG", "0.0.1", "WebNG", "WebNG", ""));
+
         try {
-            const apiClient: ApiClient = getApiClient()
-            await apiClient.getPublicSystemInfo()
-            dispatch(connectSuccessful({ serverAddress: plainServerAddress }));
+            await getApiClient().getPublicSystemInfo()
+            dispatch(connectSuccessful({ serverAddress }));
+            return true
         } catch (err) {
-            dispatch(connectFailed({ serverAddress: plainServerAddress }));
+            dispatch(connectFailed({ serverAddress }));
+            return false
         }
     };
 }

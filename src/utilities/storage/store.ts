@@ -6,8 +6,8 @@ import normalStorage from "./normalStorage";
 import sensitiveStorage from "./sensitiveStorage"
 import hardSet from "redux-persist/es/stateReconciler/hardSet";
 
-import { authReducer, AuthState } from "../../reducers/authReducer";
-import { connectReducer, ConnectState } from "../../reducers/connectReducer";
+import { authReducer, AuthState } from "../../reducers/authCredentials";
+import { connectReducer, ConnectionStatusState } from "../../reducers/connectionStatus";
 import { initApiClient } from "../../actions/ApiFunctions";
 
 const rootPersistConfig = {
@@ -22,11 +22,11 @@ const authPersistConfig: PersistConfig<AuthState> = {
     blacklist: ["loginStatus"]
 };
 
-const connectPersistConfig: PersistConfig<ConnectState> = {
+const connectPersistConfig: PersistConfig<ConnectionStatusState> = {
     key: "connectionStatus",
     storage: sensitiveStorage,
     stateReconciler: hardSet,
-    blacklist: ["connectStatus"]
+    blacklist: ["connectStatus", "apiInitialized"]
 };
 
 const rootReducer = combineReducers({
@@ -46,11 +46,7 @@ const store = configureStore({
     })
 })
 const persistor = persistStore(store, null, () => {
-    const {
-        authCredentials: {token, userId},
-        connectionStatus: {serverAddress}
-     } = store.getState()
-    initApiClient(serverAddress, token, userId)
+    store.dispatch(initApiClient())
 });
 
 export type RootState = ReturnType<typeof rootReducer>

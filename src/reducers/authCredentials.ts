@@ -1,10 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../utilities/storage/store";
+
+enum LoginStatus {
+    UNAUTHENTICATED = 'UNAUTHENTICATED',
+    AUTHENTICATED = 'AUTHENTICATION_SUCCESS',
+}
 
 const initialState = {
     username: "",
     userId: "",
     token: "",
-    loginStatus: false
+    loginStatus: LoginStatus.UNAUTHENTICATED
 };
 
 interface LoginSuccessData {
@@ -23,11 +29,13 @@ const { reducer, actions } = createSlice({
                 username,
                 userId,
                 token,
-                loginStatus: true
+                loginStatus: LoginStatus.AUTHENTICATED
             }
         }
     }
 })
+
+const getIsUserAuthenticated = (state: RootState) => state.authCredentials.loginStatus == LoginStatus.AUTHENTICATED
 
 export type AuthState = ReturnType<typeof reducer>
 
@@ -35,5 +43,6 @@ const { loginSuccessful } = actions
 
 export {
     reducer as authReducer,
-    loginSuccessful
+    loginSuccessful,
+    getIsUserAuthenticated
 }
