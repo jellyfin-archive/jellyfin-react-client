@@ -1,4 +1,4 @@
-name: Jellyfin React Client Testing
+name: Jellyfin React Client
 
 on:
  push:
