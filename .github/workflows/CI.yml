@@ -63,7 +63,7 @@ jobs:
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-        platform: [android, electron, ios, web]
+        platform: [android, electron, ios, web, windows]
 
     steps:
     - uses: actions/checkout@v1
@@ -82,3 +82,4 @@ jobs:
       run: yarn run ${{ matrix.platform }}:release
       env:
         CI: true
+   # TODO: release-windows job
