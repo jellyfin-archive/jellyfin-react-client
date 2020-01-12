@@ -1,0 +1,34 @@
+name: Jellyfin React Client Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+        platform: [android, electron, ios, web]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: test install, build, and test
+      run: |
+        yarn install
+        yarn update
+        yarn test
+      env:
+        CI: true
+    - name: Release ${{ matrix.platform }}
+      run: yarn run ${{ matrix.platform }}:release
+      env:
+        CI: true
