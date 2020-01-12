@@ -25,7 +25,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: yarn install
       run: yarn install
-    - name: yarn test
-      run: yarn test
       env:
         CI: true
+    # FIXME: https://github.com/jellyfin/jellyfin-react-client/pull/33
+    # name: yarn test
+    #   run: yarn test
