@@ -10,13 +10,10 @@ on:
 
 jobs:
   lint:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -31,15 +28,11 @@ jobs:
       run: yarn lint
 
   test:
-
     needs: lint
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -55,16 +48,12 @@ jobs:
     #   run: yarn test
 
   release:
-
     needs: [lint, test]
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
         platform: [android, electron, ios, web, windows]
-
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -82,4 +71,5 @@ jobs:
       run: yarn run ${{ matrix.platform }}:release
       env:
         CI: true
-   # TODO: release-windows job
+
+  # TODO: release-windows job
