@@ -60,11 +60,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: test install, and test
-      run: |
-        yarn install
-        # FIXME: https://github.com/jellyfin/jellyfin-react-client/pull/33
-        # yarn test
       env:
         CI: true
     - name: Release ${{ matrix.platform }}
