@@ -30,7 +30,7 @@ jobs:
     - name: eslint
       run: yarn lint
 
-  build:
+  test:
 
     needs: lint
 
@@ -53,3 +53,32 @@ jobs:
     # FIXME: https://github.com/jellyfin/jellyfin-react-client/pull/33
     # name: yarn test
     #   run: yarn test
+
+  release:
+
+    needs: [lint, test]
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+        platform: [android, electron, ios, web]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: test install, and test
+      run: |
+        yarn install
+        # FIXME: https://github.com/jellyfin/jellyfin-react-client/pull/33
+        # yarn test
+      env:
+        CI: true
+    - name: Release ${{ matrix.platform }}
+      run: yarn run ${{ matrix.platform }}:release
+      env:
+        CI: true
