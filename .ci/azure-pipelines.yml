@@ -1,0 +1,108 @@
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+    - release-*
+  tags:
+    include:
+    - '*'
+
+strategy:
+  matrix:
+      android:
+          systemName: "android"
+      electron:
+          systemName: "electron"
+      ios:
+          systemName: "ios"
+      web:
+          systemName: "web"
+      windows:
+          systemName: "windows"
+
+jobs:
+  - job: build_$(systemName)
+    displayName: 'Build $(systemName)'
+
+    dependsOn: test
+    condition: succeeded()
+
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+    - task: NodeTool@0
+      displayName: 'Install Node.js'
+      inputs:
+        versionSpec: '10.x'
+
+    - script: |
+        yarn install
+      displayName: 'Install dependencies'
+    - script: |
+        yarn run $(systemName):release
+      displayName: 'Check dist directory'
+    - script: |
+        yarn pack --filename jellyfin-react-$(systemName).tgz
+      displayName: 'Build package'
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish package'
+      condition: succeeded()
+      inputs:
+        targetPath: '$(Build.SourcesDirectory)/jellyfin-react-$(systemName).tgz'
+        artifactName: 'jellyfin-web-$(systemName)'
+
+  - job: lint
+    displayName: 'Lint'
+
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+    - task: NodeTool@0
+      displayName: 'Install Node.js'
+      inputs:
+        versionSpec: '10.x'
+
+    - script: |
+        yarn install
+      displayName: 'Install dependencies'
+    - script: |
+        yarn run lint
+      displayName: 'Run ESLint'
+
+  - job: test
+    displayName: 'Test'
+
+    dependsOn: lint
+
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+    - task: NodeTool@0
+      displayName: 'Install Node.js'
+      inputs:
+        versionSpec: '10.x'
+
+    - script: |
+        yarn install
+      displayName: 'Install dependencies'
+    - script: |
+        yarn run test
+      displayName: 'Run Test'
+
+    # TODO
+    # task: PublishTestResults@2
+    # inputs:
+    #     testResultsFiles: '**/TEST-RESULTS.xml'
+    #     testRunTitle: 'Test results for JavaScript'
+
+    # - task: PublishCodeCoverageResults@1
+    # inputs:
+    #     codeCoverageTool: Cobertura
+    #     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+    #     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
