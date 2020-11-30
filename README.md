@@ -1,6 +1,12 @@
 # jellyfin-react-client
+~~The next generation client application for Jellyfin~~
 
-The next generation client application for Jellyfin
+---
+
+## Attention - Not Maintained
+This project is kept here for legacy purposes, but is not used or maintained. It is not used in any deployed Jellyfin app. For active projects, please see the main [Jellyfin](https://github.com/jellyfin) organization.
+
+---
 
 Project created manually, based on: https://github.com/react-everywhere/re-start/pull/60
 
